@@ -18,50 +18,6 @@ class m150725_192740_seed_data extends Migration
             'created_at' => time(),
             'updated_at' => time()
         ]);
-        $this->insert('{{%user}}', [
-            'id' => 2,
-            'username' => 'accounting',
-            'email' => 'accounting@example.com',
-            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('123456'),
-            'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
-            'access_token' => Yii::$app->getSecurity()->generateRandomString(40),
-            'status' => User::STATUS_ACTIVE,
-            'created_at' => time(),
-            'updated_at' => time()
-        ]);
-        $this->insert('{{%user}}', [
-            'id' => 3,
-            'username' => 'repository',
-            'email' => 'repository@example.com',
-            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('123456'),
-            'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
-            'access_token' => Yii::$app->getSecurity()->generateRandomString(40),
-            'status' => User::STATUS_ACTIVE,
-            'created_at' => time(),
-            'updated_at' => time()
-        ]);
-        $this->insert('{{%user}}', [
-            'id' => 4,
-            'username' => 'technician',
-            'email' => 'technician@example.com',
-            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('123456'),
-            'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
-            'access_token' => Yii::$app->getSecurity()->generateRandomString(40),
-            'status' => User::STATUS_ACTIVE,
-            'created_at' => time(),
-            'updated_at' => time()
-        ]);
-        $this->insert('{{%user}}', [
-            'id' => 5,
-            'username' => 'advisor',
-            'email' => 'advisor@example.com',
-            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('123456'),
-            'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
-            'access_token' => Yii::$app->getSecurity()->generateRandomString(40),
-            'status' => User::STATUS_ACTIVE,
-            'created_at' => time(),
-            'updated_at' => time()
-        ]);
 
         $this->insert('{{%user_profile}}', [
             'user_id' => 1,
@@ -69,26 +25,7 @@ class m150725_192740_seed_data extends Migration
             'firstname' => 'Admin',
             'lastname' => ''
         ]);
-        $this->insert('{{%user_profile}}', [
-            'user_id' => 2,
-            'locale' => Yii::$app->sourceLanguage,
-            'firstname' => 'accounting',
-        ]);
-        $this->insert('{{%user_profile}}', [
-            'user_id' => 3,
-            'locale' => Yii::$app->sourceLanguage,
-            'firstname' => 'repository',
-        ]);
-        $this->insert('{{%user_profile}}', [
-            'user_id' => 4,
-            'locale' => Yii::$app->sourceLanguage,
-            'firstname' => 'repository',
-        ]);
-        $this->insert('{{%user_profile}}', [
-            'user_id' => 5,
-            'locale' => Yii::$app->sourceLanguage,
-            'firstname' => 'advisor',
-        ]);
+
 
         $this->insert('{{%page}}', [
             'slug' => 'about',
@@ -172,11 +109,11 @@ class m150725_192740_seed_data extends Migration
         ]);
 
         $this->delete('{{%user_profile}}', [
-            'user_id' => [1, 2, 3, 4, 5]
+            'user_id' => [1]
         ]);
 
         $this->delete('{{%user}}', [
-            'id' => [1, 2, 3, 4, 5]
+            'id' => [1]
         ]);
     }
 }
