@@ -153,10 +153,6 @@ $bundle = Project::register($this);
                                     'label'=> 'Quản lý người dùng',
                                     'url'=>['/user/index'],
                                 ],
-                                [
-                                    'label'=> 'Quản lý quyền',
-                                    'url'=>['/user/index'],
-                                ],
                             ]
                         ],
 
