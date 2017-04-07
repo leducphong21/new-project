@@ -1,0 +1,74 @@
+.text-red{
+    color: red;
+}
+.bInfo{
+    color:#31708f !important; ;
+}
+.page-sidebar:before{
+    top: 46px !important;
+}
+ul.files li.upload-kit-item.image img
+{
+    max-width:200px;
+    height: auto !important;
+}
+.ml20{
+    margin-left: 20px !important;
+}
+.mt10{
+    margin-top: 10px !important;
+}
+.m5{
+    margin-right: 5px !important;
+}
+.navbar .navbar-inner .navbar-header .navbar-account .account-area{
+    position: relative !important;
+    z-index: 999 !important;
+}
+
+.iUpper{
+    text-transform: uppercase;
+}
+
+select.form-control {
+    border-radius: 0;
+}
+
+textarea {
+    resize: none !important;
+}
+.modal-backdrop.in{
+    display: none !important;
+}
+.imouse{
+    cursor: pointer;
+}
+.modal-open{
+    overflow: visible;
+    padding-right: 0px !important;
+
+}
+.modal{
+    background: rgba(0,0,0,0.5);
+}
+.fade{
+
+}
+.lpagination {
+    text-align: center;
+    border-top: 1px solid #9E9E9E;
+}
+table th a{
+    display: block;
+}
+table th a.asc{
+background: url('../img/sort_asc.png')no-repeat center right;
+}
+table th a.desc{
+background: url('../img/sort_desc.png')no-repeat center right;
+}
+@media(min-width: 1200px){
+    .table-scrollable{
+        overflow-x:hidden !important;
+    }
+}
