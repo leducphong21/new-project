@@ -142,6 +142,23 @@ $bundle = Project::register($this);
                                 ],
                             ]
                         ],
+                        [
+                            'label'=> 'Người dùng và hệ thống',
+                            'url' => '#',
+                            'is_toggle' => 1,
+                            'icon'=>'<i class="menu-icon fa fa-th"></i>',
+                            //'options'=>['class'=>'open'],
+                            'items'=>[
+                                [
+                                    'label'=> 'Quản lý người dùng',
+                                    'url'=>['/user/index'],
+                                ],
+                                [
+                                    'label'=> 'Quản lý quyền',
+                                    'url'=>['/user/index'],
+                                ],
+                            ]
+                        ],
 
 
                     ]
