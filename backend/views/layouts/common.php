@@ -2,7 +2,7 @@
 /**
  * @var $this yii\web\View
  */
-use backend\assets_b\Project;
+use backend\assets_b\ProjectAsset;
 use backend\widgets\Menu;
 use common\models\TimelineEvent;
 use yii\helpers\ArrayHelper;
@@ -10,84 +10,84 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
-$bundle = Project::register($this);
+$bundle = ProjectAsset::register($this);
 ?>
 <?php $this->beginContent('@backend/views/layouts/base.php'); ?>
 
     <div class="navbar">
-    <div class="navbar-inner">
-        <div class="navbar-container">
-            <div class="navbar-header pull-left">
-                <a href="<?=Url::to(['/'])?>" class="navbar-brand">
-                    <small>
-                        <img src="<?=$this->assetManager->getAssetUrl($bundle, 'img/logo.jpg')?>" />
-                    </small>
-                </a>
-            </div>
+        <div class="navbar-inner">
+            <div class="navbar-container">
+                <div class="navbar-header pull-left">
+                    <a href="<?=Url::to(['/'])?>" class="navbar-brand">
+                        <small>
+                            <img src="<?=$this->assetManager->getAssetUrl($bundle, 'img/logo.jpg')?>" />
+                        </small>
+                    </a>
+                </div>
 
-            <div class="sidebar-collapse" id="sidebar-collapse">
-                <i class="collapse-icon fa fa-bars"></i>
-            </div>
+                <div class="sidebar-collapse" id="sidebar-collapse">
+                    <i class="collapse-icon fa fa-bars"></i>
+                </div>
 
-            <div class="pull-left">
-                <form action="<?=Url::to(['/search/index'])?>">
-                    <input type="text"
-                           class="form-control"
-                           style="margin-top: 5px; margin-left: 35px; width: 350px;"
-                           placeholder="Tìm khách hàng"
-                    />
-                </form>
-            </div>
+                <div class="pull-left">
+                    <form action="<?=Url::to(['/search/index'])?>">
+                        <input type="text"
+                               class="form-control"
+                               style="margin-top: 5px; margin-left: 35px; width: 350px;"
+                               placeholder="Tìm khách hàng"
+                        />
+                    </form>
+                </div>
 
-            <div class="navbar-header pull-right">
-                <div class="navbar-account">
-                    <ul class="account-area">
-                        <li>
-                            <a class="wave in" id="chat-link" title="Chat" href="#">
-                                <i class="icon glyphicon glyphicon-comment"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                <div class="avatar" title="View your public profile">
-                                    <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.png')) ?>">
-                                </div>
-                                <section>
-                                    <h2><span class="profile"><span>Administrator</span></span></h2>
-                                </section>
-                            </a>
-                            <!--Login Area Dropdown-->
-                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="username"><a>David Stevenson</a></li>
-                                <li class="email"><a>David.Stevenson@live.com</a></li>
-                                <!--Avatar Area-->
-                                <li>
-                                    <div class="avatar-area">
-                                        <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.png')) ?>" class="avatar">
-                                        <span class="caption">Change Photo</span>
+                <div class="navbar-header pull-right">
+                    <div class="navbar-account">
+                        <ul class="account-area">
+                            <li>
+                                <a class="wave in" id="chat-link" title="Chat" href="#">
+                                    <i class="icon glyphicon glyphicon-comment"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                    <div class="avatar" title="View your public profile">
+                                        <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.png')) ?>">
                                     </div>
-                                </li>
-                                <!--Avatar Area-->
-                                <li class="edit">
-                                    <a href="<?=Url::to(['/sign-in/profile'])?>" class="pull-left">Profile</a>
-                                    <a href="<?=Url::to(['/sign-in/profile'])?>"" class="pull-right">Setting</a>
-                                </li>
+                                    <section>
+                                        <h2><span class="profile"><span>Administrator</span></span></h2>
+                                    </section>
+                                </a>
+                                <!--Login Area Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                    <li class="username"><a>David Stevenson</a></li>
+                                    <li class="email"><a>David.Stevenson@live.com</a></li>
+                                    <!--Avatar Area-->
+                                    <li>
+                                        <div class="avatar-area">
+                                            <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.png')) ?>" class="avatar">
+                                            <span class="caption">Change Photo</span>
+                                        </div>
+                                    </li>
+                                    <!--Avatar Area-->
+                                    <li class="edit">
+                                        <a href="<?=Url::to(['/sign-in/profile'])?>" class="pull-left">Profile</a>
+                                        <a href="<?=Url::to(['/sign-in/profile'])?>"" class="pull-right">Setting</a>
+                                    </li>
 
-                                <!--/Theme Selector Area-->
-                                <li class="dropdown-footer">
-                                    <?php echo Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class'=>'', 'data-method' => 'post']) ?>
-                                </li>
-                            </ul>
-                            <!--/Login Area Dropdown-->
-                        </li>
-                        <!-- /Account Area -->
-                        <!--Note: notice that setting div must start right after account area list.
-                        no space must be between these elements-->
-                        <!-- Settings -->
-                    </ul><div class="setting">
-                        <a id="btn-setting1" title="Setting" href="#">
-                            <i class="icon glyphicon glyphicon-cog"></i>
-                        </a>
+                                    <!--/Theme Selector Area-->
+                                    <li class="dropdown-footer">
+                                        <?php echo Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class'=>'', 'data-method' => 'post']) ?>
+                                    </li>
+                                </ul>
+                                <!--/Login Area Dropdown-->
+                            </li>
+                            <!-- /Account Area -->
+                            <!--Note: notice that setting div must start right after account area list.
+                            no space must be between these elements-->
+                            <!-- Settings -->
+                        </ul><div class="setting">
+                            <a id="btn-setting1" title="Setting" href="<?=Url::to(['/system/key-storage'])?>">
+                                <i class="icon glyphicon glyphicon-cog"></i>
+                            </a>
 
                         <!-- Settings -->
                     </div>
@@ -126,19 +126,19 @@ $bundle = Project::register($this);
                             'items'=>[
                                 [
                                     'label'=> 'Nhóm khách hàng',
-                                    'url'=>['/repository-report/index'],
+                                    'url'=>['#'],
                                 ],
                                 [
                                     'label'=> 'Nhóm sản phẩm',
-                                    'url'=>['/product-category/index'],
+                                    'url'=>['#'],
                                 ],
                                 [
                                     'label'=> 'Nhóm dự án',
-                                    'url'=>['/other/product-manufacturer/index'],
+                                    'url'=>['#'],
                                 ],
                                 [
                                     'label'=> 'Nhóm hợp đồng',
-                                    'url'=>['/car-carry/index'],
+                                    'url'=>['#'],
                                 ],
                             ]
                         ],
@@ -155,7 +155,6 @@ $bundle = Project::register($this);
                                 ],
                             ]
                         ],
-
 
                     ]
                 ]) ?>
@@ -366,13 +365,14 @@ $bundle = Project::register($this);
                     </ul>
 
                     <div class=" pull-right">
-                        <a class="btn btn-default" href="<?=Url::to(['/repair/ticket/create'])?>">
+                        <a class="btn btn-default" href="<?=Url::to(['#'])?>">
                             <i class="fa fa-plus withe"></i>Phiếu đặt cọc
                         </a>
 
-                        <a class="btn btn-default" href="<?=Url::to(['/repair/invoice/create'])?>">
+                        <a class="btn btn-default" href="<?=Url::to(['#'])?>">
                             <i class="fa fa-plus withe"></i>Lập hợp đồng
                         </a>
+
                     </div>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -402,14 +402,14 @@ $bundle = Project::register($this);
                 <!-- Page Body -->
                 <div class="page-body">
                     <div class="row">
-                        <div class="tabbable">
-                            <?php if (Yii::$app->session->hasFlash('alert')):?>
-                                <?php echo \yii\bootstrap\Alert::widget([
-                                    'body'=>ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
-                                    'options'=>ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
-                                ])?>
-                            <?php endif; ?>
-                        </div>
+                            <div class="tabbable">
+                                <?php if (Yii::$app->session->hasFlash('alert')):?>
+                                    <?php echo \yii\bootstrap\Alert::widget([
+                                        'body'=>ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+                                        'options'=>ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
+                                    ])?>
+                                <?php endif; ?>
+                            </div>
                     </div>
                     <div class="row">
                         <?php echo $content ?>

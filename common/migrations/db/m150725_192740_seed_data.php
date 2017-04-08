@@ -26,7 +26,6 @@ class m150725_192740_seed_data extends Migration
             'lastname' => ''
         ]);
 
-
         $this->insert('{{%page}}', [
             'slug' => 'about',
             'title' => 'About',

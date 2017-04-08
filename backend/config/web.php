@@ -130,24 +130,13 @@ $config = [
                 'roles' => ['?', '@'],
                 'actions' => ['error']
             ],
-            [
-                'controllers' => ['debug/default'],
-                'allow' => true,
-                'roles' => ['?'],
-            ],
+
             [
                 'controllers' => ['user'],
                 'allow' => true,
                 'roles' => ['administrator'],
             ],
-            [
-                'controllers' => ['user'],
-                'allow' => false,
-            ],
-            [
-                'controllers' => ['system'],
-                'allow' => true,
-            ],
+
             [
                 'allow' => true,
                 'roles' => ['user'],

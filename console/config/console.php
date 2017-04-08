@@ -29,10 +29,6 @@ return [
             'migrationPath' => '@common/migrations/project',
             'migrationTable' => '{{%system_project_migration}}'
         ],
-        'accouting-migrate' => [
-            'class' => 'console\controllers\AccoutingMigrateController',
-            'migrationPath' => '@common/migrations/accouting',
-            'migrationTable' => '{{%system_accouting_migration}}'
-        ],
+
     ],
 ];
