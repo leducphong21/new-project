@@ -68,7 +68,26 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'backend\grid\ActionColumn',
                 'template'=>'{update} {delete}',
-            ],
+                'contentOptions' => ['style' => 'width:150px;text-align:center'],
+                'buttons' => [
+                    'update' => function ($url, $model, $key) {
+                        return Html::a('<i class="fa fa-edit"></i>Cập nhật', $url, [
+                            'title' => \Yii::t('common', 'Update'),
+                            'class' => 'btn btn-info btn-xs edit'
+                        ]);
+                    },
+                    'delete' => function ($url, $model, $key) {
+                        return Html::a('<i class="fa fa-trash-o"></i>Xóa', $url, [
+                            'title' => \Yii::t('common', 'Delete'),
+                            'class' => 'btn btn-danger btn-xs delete',
+                            'data' => [
+                                'confirm' => \Yii::t('common', 'Confirm Delete'),
+                                'method' => 'post',
+                            ]
+                        ]);
+                    },
+                ]
+            ]
         ],
     ]); ?>
 
