@@ -86,27 +86,8 @@ $config = [
         'system' => [
             'class' => 'backend\modules\system\Module',
         ],
-        'data' => [
-            'class' => 'backend\modules\system\Module',
-        ],
-        //Sửa chữa
-        'repair' => [
-            'class' => 'backend\modules\repair\Module',
-        ],
-        //Kho hàng
-        'stock' => [
-            'class' => 'backend\modules\stock\Module',
-        ],
-        //Quỹ
-        'fund' => [
-            'class' => 'backend\modules\fund\Module',
-        ],
-        //Mua hàng
-        'purchase' => [
-            'class' => 'backend\modules\purchase\Module',
-        ],
-        'other' => [
-            'class' => 'backend\modules\other\Module',
+        'category' => [
+            'class' => 'backend\modules\category\Module',
         ],
     ],
     'as globalAccess' => [
