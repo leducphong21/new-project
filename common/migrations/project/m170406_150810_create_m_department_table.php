@@ -14,6 +14,12 @@ class m170406_150810_create_m_department_table extends Migration
     {
         $this->createTable('m_department', [
             'id' => $this->primaryKey(),
+            'name' => $this->string(255),
+            'branch_id' => $this->integer(),
+            'created_by' => $this->integer(),
+            'created_at' => $this->date(),
+            'updated_by' => $this->integer(),
+            'updated_at' => $this->date(),
         ]);
     }
 
