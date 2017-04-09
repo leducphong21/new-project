@@ -69,14 +69,7 @@ class ProductCategory extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     * @return \common\models\project\query\ProductCategoryQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\project\query\ProductCategoryQuery(get_called_class());
-    }
+
     public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);

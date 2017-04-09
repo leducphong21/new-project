@@ -15,6 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="widget-body">
                     <div class="table-toolbar">
                         <div class="widget">
+
+
                             <div class="btn-group pull-right">
                                 <a class="btn btn-success" href="<?=Url::to(['create'])?>"><i class="fa fa-plus withe"></i>Thêm mới</a>
 
@@ -39,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         return Html::a($model->name, ['update', 'id' =>$model->id], ['class' =>'alink']);
                                     },
                                 ],
-                                //'status',
+                                'code',
                                 [
                                     'attribute' => 'created_by',
                                     'value' => function ($model) {

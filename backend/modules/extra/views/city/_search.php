@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\project\ProductCategorySearch */
+/* @var $model common\models\project\CitySearch */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="product-category-search">
+<div class="city-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -19,11 +19,13 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->field($model, 'name') ?>
 
+    <?php echo $form->field($model, 'code') ?>
+
     <?php echo $form->field($model, 'created_by') ?>
 
     <?php echo $form->field($model, 'created_at') ?>
 
-    <?php echo $form->field($model, 'updated_by') ?>
+    <?php // echo $form->field($model, 'updated_by') ?>
 
     <?php // echo $form->field($model, 'updated_at') ?>
 

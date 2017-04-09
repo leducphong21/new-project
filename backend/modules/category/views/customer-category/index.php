@@ -25,13 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
 
-                    <div id="registration-form">
+                    <div id="registration-form" style="overflow: scroll">
                         <?php Pjax::begin(['id' => 'datas', 'timeout' => 3000]); ?>
                         <?php echo GridView::widget([
                             'dataProvider' => $dataProvider,
                             'filterModel' => $searchModel,
                             //'summary' => '',
-                            'options' => ['id' => 'w1', 'class' => 'table-scrollable'],
+                            'options' => ['id' => 'w1'],
                             'columns' => [
                                 ['class' => 'yii\grid\CheckboxColumn'],
                                 [

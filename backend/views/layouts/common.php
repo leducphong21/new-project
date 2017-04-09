@@ -143,6 +143,31 @@ $bundle = ProjectAsset::register($this);
                             ]
                         ],
                         [
+                            'label'=> 'Phụ mục',
+                            'url' => '#',
+                            'is_toggle' => 1,
+                            'icon'=>'<i class="menu-icon fa fa-th"></i>',
+                            //'options'=>['class'=>'open'],
+                            'items'=>[
+                                [
+                                    'label'=> 'Danh sách tỉnh/thành',
+                                    'url'=>['/extra/city'],
+                                ],
+                                [
+                                    'label'=> 'Danh sách quận/huyện',
+                                    'url'=>['/extra/county'],
+                                ],
+                                [
+                                    'label'=> 'Danh sách chi nhánh',
+                                    'url'=>['#'],
+                                ],
+                                [
+                                    'label'=> 'Danh sách bộ phận',
+                                    'url'=>['#'],
+                                ],
+                            ]
+                        ],
+                        [
                             'label'=> 'Người dùng và hệ thống',
                             'url' => '#',
                             'is_toggle' => 1,

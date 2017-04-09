@@ -68,10 +68,7 @@ class ProjectCategory extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
-    public static function find()
-    {
-        return new \common\models\project\query\ProductCategoryQuery(get_called_class());
-    }
+
     public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
