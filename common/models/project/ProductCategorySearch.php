@@ -18,8 +18,8 @@ class ProductCategorySearch extends ProductCategory
     public function rules()
     {
         return [
-            [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'created_at', 'updated_at'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -56,13 +56,13 @@ class ProductCategorySearch extends ProductCategory
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_by' => $this->created_by,
             'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
             'updated_at' => $this->updated_at,
         ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->joinWith('author');
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'username', $this->created_by])
+            ->andFilterWhere(['like', 'username', $this->updated_by]);
 
         return $dataProvider;
     }
