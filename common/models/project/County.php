@@ -66,13 +66,13 @@ class County extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'code' => 'Code',
-            'city_id' => 'City ID',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'name' => 'Tên quận',
+            'code' => 'Mã quận',
+            'city_id' => 'Tỉnh',
+            'created_by' => 'Người tạo',
+            'created_at' => 'Ngày tạo',
+            'updated_by' => 'Người sửa',
+            'updated_at' => 'Ngày sửa',
         ];
     }
     public function getAuthor()

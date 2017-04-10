@@ -61,11 +61,11 @@ class ContractCategory extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'name' => 'Tên loại hợp đồng',
+            'created_by' => 'Người tạo',
+            'created_at' => 'Ngày tạo',
+            'updated_by' => 'Người sửa',
+            'updated_at' => 'Ngày sửa',
         ];
     }
 

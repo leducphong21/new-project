@@ -125,19 +125,19 @@ $bundle = ProjectAsset::register($this);
                             //'options'=>['class'=>'open'],
                             'items'=>[
                                 [
-                                    'label'=> 'Nhóm khách hàng',
+                                    'label'=> 'Loại khách hàng',
                                     'url'=>['/category/customer-category'],
                                 ],
                                 [
-                                    'label'=> 'Nhóm sản phẩm',
+                                    'label'=> 'Loại sản phẩm',
                                     'url'=>['/category/product-category'],
                                 ],
                                 [
-                                    'label'=> 'Nhóm dự án',
+                                    'label'=> 'Loại dự án',
                                     'url'=>['/category/project-category'],
                                 ],
                                 [
-                                    'label'=> 'Nhóm hợp đồng',
+                                    'label'=> 'Loại hợp đồng',
                                     'url'=>['/category/contract-category'],
                                 ],
                             ]

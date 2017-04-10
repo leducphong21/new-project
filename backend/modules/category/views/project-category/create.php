@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 
 
-$this->title = 'Thêm mới nhóm sản phẩm';
+$this->title = 'Thêm mới loại dự án';
 $this->params['breadcrumbs'][] = ['label' => 'Thêm mới nhóm hàng hóa', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

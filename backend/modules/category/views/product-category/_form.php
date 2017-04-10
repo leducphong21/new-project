@@ -22,7 +22,7 @@ use yii\bootstrap\ActiveForm;
                 <div class="col-sm-6 pull-left">
                     <div class="form-group ">
                      <span class="input-icon icon-right">
-                         <?=Html::activeTextInput($model, 'name', ['class' => 'form-control', 'placeholder' =>'Tên nhóm sản phẩm', 'style' =>'width: 320px;'])?>
+                         <?=Html::activeTextInput($model, 'name', ['class' => 'form-control', 'placeholder' =>'Tên loại sản phẩm', 'style' =>'width: 320px;'])?>
                      </span>
                     </div>
                 </div>
