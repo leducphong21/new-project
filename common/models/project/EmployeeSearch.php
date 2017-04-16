@@ -5,12 +5,12 @@ namespace common\models\project;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\project\Department;
+use common\models\project\Employee;
 
 /**
- * DepartmentSearch represents the model behind the search form about `common\models\project\Department`.
+ * EmployeeSearch represents the model behind the search form about `common\models\project\Employee`.
  */
-class DepartmentSearch extends Department
+class EmployeeSearch extends Employee
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class DepartmentSearch extends Department
     public function rules()
     {
         return [
-            [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'branch_id', 'department_id','regency_id', 'deleted', 'created_by', 'updated_by'], 'integer'],
+            [['name', 'code', 'phone_number', 'address', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -41,12 +41,12 @@ class DepartmentSearch extends Department
      */
     public function search($params)
     {
-        $query = Department::find();
+        $query = Employee::find()->active();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => env('PAGE_SIZE'),
+                'pageSize' => 5,
             ],
         ]);
 
@@ -56,13 +56,19 @@ class DepartmentSearch extends Department
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'branch_id' => $this->branch_id,
+            'department_id' => $this->department_id,
+            'deleted' => $this->deleted,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at,
             'updated_by' => $this->updated_by,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'phone_number', $this->phone_number])
+            ->andFilterWhere(['like', 'address', $this->address]);
 
         return $dataProvider;
     }

@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 
-$this->title = 'Danh sách bộ phận';
+$this->title = 'Danh sách nhân viên';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -31,17 +31,47 @@ $this->params['breadcrumbs'][] = $this->title;
                             'dataProvider' => $dataProvider,
                             'filterModel' => $searchModel,
                             //'summary' => '',
-                            'options' => ['id' => 'w1'],
+                            'options' => [
+                                'id' => 'w1',
+                                'style'=>'width: 1500px'
+                            ],
                             'columns' => [
                                 ['class' => 'yii\grid\CheckboxColumn'],
                                 [
                                     'attribute' => 'name',
+                                    'contentOptions' => ['style' => 'width:200px;'],
                                     'format' => 'raw',
                                     'value' => function ($model) {
                                         return Html::a($model->name, ['update', 'id' =>$model->id], ['class' =>'alink']);
                                     },
                                 ],
-                                //'status',
+                                'code',
+                                [
+                                    'attribute' => 'address',
+                                    'contentOptions' => ['style' => 'width:200px;'],
+                                ],
+                                'phone_number',
+                                [
+                                    'attribute' => 'regency_id',
+                                    'contentOptions' => ['style' => 'width:200px;'],
+                                    'value' => function ($model) {
+                                        return $model->regency? $model->regency->name : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'branch_id',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'value' => function ($model) {
+                                        return $model->branch? $model->branch->name : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'department_id',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'value' => function ($model) {
+                                        return $model->department? $model->department->name : '';
+                                    },
+                                ],
                                 [
                                     'attribute' => 'created_by',
                                     'value' => function ($model) {
@@ -69,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 [
                                     'class' => 'backend\grid\ActionColumn',
                                     'template'=>'{update} {delete}',
-                                    'contentOptions' => ['style' => 'width:150px;text-align:center'],
+                                    'contentOptions' => ['style' => 'width:200px;text-align:center'],
                                     'buttons' => [
                                         'update' => function ($url, $model, $key) {
                                             return Html::a('<i class="fa fa-edit"></i>Cập nhật', $url, [

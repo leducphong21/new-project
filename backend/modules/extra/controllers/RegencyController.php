@@ -3,18 +3,17 @@
 namespace backend\modules\extra\controllers;
 
 use Yii;
-use common\models\project\Department;
-use common\models\project\DepartmentSearch;
+use common\models\project\Regency;
+use common\models\project\RegencySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\response;
-use yii\helpers\ArrayHelper;
 
 /**
- * DepartmentController implements the CRUD actions for Department model.
+ * RegencyController implements the CRUD actions for Regency model.
  */
-class DepartmentController extends Controller
+class RegencyController extends Controller
 {
     public function behaviors()
     {
@@ -29,12 +28,12 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Lists all Department models.
+     * Lists all Regency models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new DepartmentSearch();
+        $searchModel = new RegencySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,7 +43,7 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Displays a single Department model.
+     * Displays a single Regency model.
      * @param integer $id
      * @return mixed
      */
@@ -56,13 +55,13 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Creates a new Department model.
+     * Creates a new Regency model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Department();
+        $model = new Regency();
 
         if ($model->load(Yii::$app->request->post())) {
             if($model->save()){
@@ -74,12 +73,12 @@ class DepartmentController extends Controller
            }
         }
         return $this->render('create', [
-            'model' => $model,
+        'model' => $model,
         ]);
     }
 
     /**
-     * Updates an existing Department model.
+     * Updates an existing Regency model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -98,10 +97,9 @@ class DepartmentController extends Controller
             }
         }
         return $this->render('update', [
-            'model' => $model,
+        'model' => $model,
         ]);
     }
-
 
     public function actionAjaxDelete()
     {
@@ -110,8 +108,8 @@ class DepartmentController extends Controller
             $dataPost = $_POST;
             $dataId = isset($dataPost['ids']) ? $dataPost['ids'] : [];
             foreach ($dataId as $item) {
-                /** @var Department $mode */
-                $mode = Department::find()->where(['id' => $item])->one();
+                /** @var Regency $mode */
+                $mode = Regency::find()->where(['id' => $item])->one();
                 if ($mode) {
                     $mode->delete();
                 }
@@ -129,7 +127,7 @@ class DepartmentController extends Controller
         return $res;
     }
     /**
-     * Deletes an existing Department model.
+     * Deletes an existing Regency model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -146,18 +144,18 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Finds the Department model based on its primary key value.
+     * Finds the Regency model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Department the loaded model
+     * @return Regency the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Department::findOne($id)) !== null) {
+        if (($model = Regency::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The Department item does not exist.');
+            throw new NotFoundHttpException('The Regency item does not exist.');
         }
     }
 }

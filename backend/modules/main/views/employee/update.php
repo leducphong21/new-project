@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 
-$this->title = 'Sửa loại bộ phận: ' . $model->name;
+$this->title = 'Sửa tchi nhánh: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Product Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
@@ -12,6 +12,9 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'modelRegency' => $modelRegency,
+        'modelDepartment' => $modelDepartment,
+        'modelBranch' => $modelBranch
     ]) ?>
 
 </div>

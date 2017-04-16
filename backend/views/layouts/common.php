@@ -118,6 +118,11 @@ $bundle = ProjectAsset::register($this);
                             'url'=>['/'],
                         ],
                         [
+                            'label'=> 'Nhân viên',
+                            'icon'=>'<i class="menu-icon glyphicon glyphicon-user"></i>',
+                            'url'=>['/main/employee'],
+                        ],
+                        [
                             'label'=> 'Danh mục chung',
                             'url' => '#',
                             'is_toggle' => 1,
@@ -164,6 +169,10 @@ $bundle = ProjectAsset::register($this);
                                 [
                                     'label'=> 'Danh sách bộ phận',
                                     'url'=>['/extra/department'],
+                                ],
+                                [
+                                    'label'=> 'Danh sách chức vụ',
+                                    'url'=>['/extra/regency'],
                                 ],
                             ]
                         ],

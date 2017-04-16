@@ -9,7 +9,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 
 /**
- * This is the model class for table "m_department".
+ * This is the model class for table "m_regency".
  *
  * @property integer $id
  * @property string $name
@@ -18,14 +18,14 @@ use yii\db\Expression;
  * @property integer $updated_by
  * @property string $updated_at
  */
-class Department extends \yii\db\ActiveRecord
+class Regency extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'm_department';
+        return 'm_regency';
     }
 
     public function behaviors()
@@ -48,7 +48,7 @@ class Department extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'created_by', 'updated_by'], 'integer'],
+            [['created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
         ];
@@ -61,14 +61,13 @@ class Department extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Tên bộ phận',
+            'name' => 'Tên chức vụ',
             'created_by' => 'Người tạo',
             'created_at' => 'Ngày tạo',
             'updated_by' => 'Người sửa',
             'updated_at' => 'Ngày sửa',
         ];
     }
-
     public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);

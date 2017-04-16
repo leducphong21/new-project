@@ -5,12 +5,12 @@ namespace common\models\project;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\project\Department;
+use common\models\project\Regency;
 
 /**
- * DepartmentSearch represents the model behind the search form about `common\models\project\Department`.
+ * RegencySearch represents the model behind the search form about `common\models\project\Regency`.
  */
-class DepartmentSearch extends Department
+class RegencySearch extends Regency
 {
     /**
      * @inheritdoc
@@ -41,12 +41,12 @@ class DepartmentSearch extends Department
      */
     public function search($params)
     {
-        $query = Department::find();
+        $query = Regency::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => env('PAGE_SIZE'),
+                'pageSize' => 5,
             ],
         ]);
 
