@@ -64,6 +64,7 @@ class ProductCategoryController extends Controller
         $model = new ProductCategory();
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->created_at = Date('Y-m-d');
             if($model->save()){
             Yii::$app->getSession()->setFlash('alert', [
                 'body'=>'Thêm mới thành công.',

@@ -118,6 +118,7 @@ class CustomerCategoryController extends Controller
                 'body' => 'Sucess',
                 'success' => true,
             ];
+
             return $res;
         }
         $res = [

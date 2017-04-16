@@ -38,7 +38,7 @@ use kartik\select2\Select2;
                             'theme' => Select2::THEME_BOOTSTRAP,
                             'options' => [
                                 'class' => 'form-control input-sm',
-                                'placeholder' => 'Chọn nhóm hàng ...'
+                                'placeholder' => 'Chọn thành phố'
                             ],
                             'size' => Select2::SMALL,
                             'pluginOptions' => [

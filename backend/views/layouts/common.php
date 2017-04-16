@@ -159,11 +159,11 @@ $bundle = ProjectAsset::register($this);
                                 ],
                                 [
                                     'label'=> 'Danh sách chi nhánh',
-                                    'url'=>['#'],
+                                    'url'=>['/extra/branch'],
                                 ],
                                 [
                                     'label'=> 'Danh sách bộ phận',
-                                    'url'=>['#'],
+                                    'url'=>['/extra/department'],
                                 ],
                             ]
                         ],
