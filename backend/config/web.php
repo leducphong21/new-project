@@ -96,6 +96,9 @@ $config = [
         'main' => [
             'class' => 'backend\modules\main\Module',
         ],
+        'customer' => [
+            'class' => 'backend\modules\customer\Module',
+        ],
     ],
     'as globalAccess' => [
         'class' => '\common\behaviors\GlobalAccessBehavior',
