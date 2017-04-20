@@ -102,7 +102,7 @@ class Employee extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
-    public function getbranch()
+    public function getBranch()
     {
         return $this->hasOne(Branch::className(), ['id' => 'branch_id']);
     }

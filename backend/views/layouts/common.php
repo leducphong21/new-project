@@ -123,6 +123,32 @@ $bundle = ProjectAsset::register($this);
                             'url'=>['/main/employee'],
                         ],
                         [
+                            'label'=> 'QUản lý sản phẩm',
+                            'url' => '#',
+                            'is_toggle' => 1,
+                            'icon'=>'<i class="menu-icon fa fa-th"></i>',
+                            //'options'=>['class'=>'open'],
+                            'items'=>[
+                                [
+                                    'label'=> 'Sản phẩm',
+                                    'url'=>['/main/product'],
+                                ],
+                            ]
+                        ],
+                        [
+                            'label'=> 'Quản lý hợp đồng',
+                            'url' => '#',
+                            'is_toggle' => 1,
+                            'icon'=>'<i class="menu-icon fa fa-th"></i>',
+                            //'options'=>['class'=>'open'],
+                            'items'=>[
+                                    [
+                                        'label'=> 'Hợp đồng',
+                                        'url'=>['/main/project'],
+                                    ],
+                                ]
+                        ],
+                        [
                             'label'=> 'Khách hàng',
                             'url' => '#',
                             'is_toggle' => 1,
