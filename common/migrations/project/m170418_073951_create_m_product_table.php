@@ -14,6 +14,7 @@ class m170418_073951_create_m_product_table extends Migration
     {
         $this->createTable('m_product', [
             'id' => $this->primaryKey(),
+            'name' => $this->string(255),
             'code' => $this->string(8),
             'product_category_id' => $this->integer(),
             'project_id' => $this->integer(),
@@ -22,7 +23,6 @@ class m170418_073951_create_m_product_table extends Migration
             'price' => $this->integer(),
             'acreage' => $this->integer(),
             'total_price' => $this->integer(),
-            'count'=> $this->integer(),
             'status_description' => $this->smallInteger(8)->defaultValue(1),
             'status' => $this->smallInteger(8)->defaultValue(1),
             'deleted' => $this->smallInteger(8)->defaultValue(1),
@@ -31,6 +31,10 @@ class m170418_073951_create_m_product_table extends Migration
             'updated_by' => $this->integer(),
             'updated_at' => $this->date(),
             'address' => $this->string(255),
+            'floors' => $this->integer(),
+            'rooms' => $this->integer(),
+            'bedrooms' => $this->integer(),
+            'bathrooms' => $this->integer(),
             'description' => $this->text(),
         ]);
     }

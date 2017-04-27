@@ -18,7 +18,7 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['count','id', 'product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
+            [['name','floors','bedrooms','rooms','bathrooms','id', 'product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
             [['code', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -56,6 +56,7 @@ class ProductSearch extends Product
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'name' => 'Tên sản phẩm',
             'product_category_id' => $this->product_categoru_id,
             'project_id' => $this->project_id,
             'county_id' => $this->county_id,
@@ -63,7 +64,6 @@ class ProductSearch extends Product
             'price' => $this->price,
             'acreage' => $this->acreage,
             'total_price' => $this->total_price,
-            'count'=> $this->count,
             'status_description' => $this->status_description,
             'status' => $this->status,
             'deleted' => $this->deleted,
@@ -71,6 +71,10 @@ class ProductSearch extends Product
             'created_at' => $this->created_at,
             'updated_by' => $this->updated_by,
             'updated_at' => $this->updated_at,
+            'rooms' => $this->rooms,
+            'bedrooms' => $this->bedrooms,
+            'bathrooms' => $this->bathrooms,
+            'foors' => $this->floors
         ]);
 
         $query->andFilterWhere(['like', 'code', $this->code]);

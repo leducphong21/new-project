@@ -5,7 +5,6 @@ use backend\grid\GridView;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
-
 $this->title = 'Danh sách loại sản phẩm';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -24,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                     </div>
-
                     <div id="registration-form" style="overflow: scroll">
                         <?php Pjax::begin(['id' => 'datas', 'timeout' => 3000]); ?>
                         <?php echo GridView::widget([
@@ -38,12 +36,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             'columns' => [
                                 ['class' => 'yii\grid\CheckboxColumn'],
                                 [
-                                    'attribute' => 'code',
+                                    'attribute' => 'name',
+                                    'contentOptions' => ['style' => 'width:150px;'],
                                     'format' => 'raw',
                                     'value' => function ($model) {
-                                        return Html::a($model->code, ['update', 'id' =>$model->id], ['class' =>'alink']);
+                                        return Html::a($model->name, ['update', 'id' =>$model->id], ['class' =>'alink']);
                                     },
                                 ],
+                                'code',
                                 [
                                     'attribute' => 'product_category_id',
                                     'contentOptions' => ['style' => 'width:150px;'],
@@ -64,16 +64,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'attribute' => 'total_price',
                                 ],
                                 [
-                                    'attribute' => 'count',
-                                    'contentOptions' => ['style' => 'width:80px;'],
-                                ],
-                                [
                                     'attribute' => 'status',
                                     'contentOptions' => ['style' => 'width:150px;'],
                                     'value' => function ($model) {
-                                        if($model->status=1)
+                                        if($model->status==1)
                                             return 'Không mở bán';
-                                        else if($model->status=2)
+                                        else if($model->status==2)
                                             return 'Mở bán';
                                     },
                                 ],
@@ -144,6 +140,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <table id="show-info">
                         <tr>
                             <td class="width">
+                                Tên sản phẩm:
+                            </td>
+                            <td>
+                                <p id="name"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="width">
                                 Mã sản phẩm:
                             </td>
                             <td>
@@ -158,14 +162,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <p id="product_category"></p>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="width">
-                                Khu vực:
-                            </td>
-                            <td>
-                                <p id="khuvuc"></p>
-                            </td>
-                        </tr>
+<!--                        <tr>-->
+<!--                            <td class="width">-->
+<!--                                Khu vực:-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <p id="khuvuc"></p>-->
+<!--                            </td>-->
+<!--                        </tr>-->
                         <tr>
                             <td class="width">
                                 Địa chỉ:
@@ -200,6 +204,38 @@ $this->params['breadcrumbs'][] = $this->title;
                         </tr>
                         <tr>
                             <td class="width">
+                                Số tầng
+                            </td>
+                            <td>
+                                <p id="floors"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="width">
+                                Tổng số phòng
+                            </td>
+                            <td>
+                                <p id="rooms"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="width">
+                                Số phòng ngủ
+                            </td>
+                            <td>
+                                <p id="bedrooms"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="width">
+                                Số phòng vệ sinh
+                            </td>
+                            <td>
+                                <p id="bathrooms"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="width">
                                 Mô tả:
                             </td>
                             <td>
@@ -215,7 +251,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         </div>
     </div>
-
+    <?php
+        $url = url::to(['product/ajax-info']);
+    ?>
 <?php
 $app_css = <<<CSS
 input[type=checkbox], input[type=radio]
@@ -291,22 +329,26 @@ $(".activity-view-link").click(function() {
     var ab = $(this).data("id");
     console.log(ab);
                     $.ajax({
-                    url : "/main/product/ajax-info", 
+                    url : "$url", 
                     type : "get", 
                     dateType:"text", 
                     data : { 
                          id : ab
                     },
                     success : function (data){
-                        product= data.product;
-                        $('#code').html(product.code);
+                        $('#name').html(data.name);
+                        $('#code').html(data.code);
                         $('#product_category').html(data.product_category);
-                        $('#khuvuc').html(data.county + ' - ' + data.city);
-                        $('#price').html(product.price);
-                        $('#acreage').html(product.acreage);
-                        $('#address').html(product.address);
-                        $('#total_price').html(product.total_price);
-                        $('#description').html(product.description);
+                        // $('#khuvuc').html(data.county + ' - ' + data.city);
+                        $('#price').html(data.price);
+                        $('#acreage').html(data.acreage);
+                        $('#address').html(data.address);
+                        $('#total_price').html(data.total_price);
+                        $('#floors').html(data.floors + ' tầng');
+                        $('#rooms').html(data.rooms + ' phòng');
+                        $('#bedrooms').html(data.bedrooms + ' phòng ngủ');
+                        $('#bathrooms').html(data.bathrooms + ' phòng vệ sinh');
+                        $('#description').html(data.description);
                     }
                 });
 });

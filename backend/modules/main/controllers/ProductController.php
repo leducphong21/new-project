@@ -216,31 +216,40 @@ class ProductController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
         $dataGet = $_GET;
         $dataId = isset($dataGet['id']) ? $dataGet['id'] : [];
-        $product = [];
-        $dataCarOwner = [];
-
-
-        if ($dataId && is_numeric($dataId)) {
-            $product = Product::find()->where(['id' => $dataId])->one();
-
-            $product_category_id = $product->product_category_id;
-            $product_category = ProductCategory::find()->where(['id' => $product_category_id])->one()->name;
-
-            $county_id = $product->county_id;
-            $county = County::find()->where(['id' => $county_id])->one()->name;
-
-            $city_id = $product->city_id;
-            $city = City::find()->where(['id' => $city_id])->one()->name;
-
-            $images = UploadForm::find()->where(['product_id' => $product->id])->all();
-            $res = [
-                'product' => $product,
-                'product_category' => $product_category,
-                'county' => $county,
-                'city' => $city,
-                'images' => $images
-            ];
-            return $res;
+        if (isset($dataId)){
+            $product = [];
+            $dataCarOwner = [];
+            if ($dataId && is_numeric($dataId)) {
+                $product = Product::find()->where(['id' => $dataId])->one();
+                $product_category_id = $product->product_category_id;
+                $product_category = ProductCategory::find()->where(['id' => $product_category_id])->one()->name;
+                $county_id = $product->county_id;
+                $county = County::find()->where(['id' => $county_id])->one()->name;
+                $city_id = $product->city_id;
+                $city = City::find()->where(['id' => $city_id])->one()->name;
+                $images = UploadForm::find()->where(['product_id' => $product->id])->all();
+                $res = [
+                    'name' => $product->name,
+                    'code' => $product->code,
+                    'product_category' => $product_category,
+                    'county' => $county,
+                    'city' => $city,
+                    'address' => $product->address,
+                    'price' => $product->price,
+                    'acreage' => $product->acreage,
+                    'total_price' => $product->total_price,
+                    'floors' => $product->floors,
+                    'rooms' => $product->rooms,
+                    'bedrooms' => $product->bedrooms,
+                    'bathrooms' => $product->bathrooms,
+                    'description' => $product->description,
+                    'images' => $images
+                ];
+                return $res;
+        } else {
+                $listProduct = Product::find()->all();
+                return $listProduct;
+            }
         }
     }
 }

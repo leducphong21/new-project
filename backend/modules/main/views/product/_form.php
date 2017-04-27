@@ -24,6 +24,13 @@ use kartik\select2\Select2;
                 <br>
                 <div class="row">
                     <div class="col-sm-3">
+                        <div class="form-group ">Tên sản phẩm
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'name', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
                         <span class="input-icon icon-right">
                          <label>Loại sản phẩm 1</label>
                             <?php
@@ -92,6 +99,10 @@ use kartik\select2\Select2;
                              ?>
                     </span>
                     </div>
+
+                </div>
+                <br>
+                <div class="row">
                     <div class="col-sm-3">
                          <span class="input-icon icon-right">
                          <label>Chọn quận huyện</label>
@@ -115,9 +126,6 @@ use kartik\select2\Select2;
                              ?>
                     </span>
                     </div>
-                </div>
-                <br>
-                <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group ">Giá mết vuông
                             <span class="input-icon icon-right">
@@ -132,31 +140,58 @@ use kartik\select2\Select2;
                          </span>
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="form-group ">Số lượng
-                            <span class="input-icon icon-right">
-                             <?=Html::activeTextInput($model, 'count', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
-                         </span>
-                        </div>
-                    </div>
+
                 </div>
                 <br>
                 <h1>Mô tả chi tiết sản phẩm</h1>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group ">Địa chỉ
                             <span class="input-icon icon-right">
                              <?=Html::activeTextInput($model, 'address', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
                          </span>
                         </div>
-                        <br><br><br>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group ">Số tầng
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'floors', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group ">Tổng số phòng
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'rooms', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group ">Số phòng ngủ
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'bedrooms', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group ">Số phòng về sinh
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'bathrooms', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
                         <div class="form-group ">Hình ảnh
                             <span class="input-icon icon-right">
                              <?= $form->field($modelImage, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
                          </span>
                         </div>
                     </div>
-                    <div class="col-sm-8">
+
+                    <div class="col-sm-6">
                         <div class="form-group ">Mô tả
                             <span class="input-icon icon-right">
                              <?=Html::activeTextarea($model, 'description', ['class' => 'form-control', 'style' =>'width: 500px; height: 200px;'])?>

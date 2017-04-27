@@ -43,7 +43,6 @@ class Product extends \yii\db\ActiveRecord
         return 'm_product';
     }
 
-    public $name;
     public function behaviors()
     {
         return [
@@ -64,10 +63,11 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['count','product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
+            [['floors','bedrooms','rooms','bathrooms','product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at','address','description'], 'safe'],
             [['code'], 'string', 'max' => 8],
-            [['product_category_id','county_id','city_id','price','acreage','count'],'required' ]
+            [['name'], 'string', 'max' => 64],
+            [['product_category_id','county_id','city_id','price','acreage','name'],'required' ]
         ];
     }
 
@@ -78,6 +78,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'name' => 'Tên sản phẩm',
             'code' => 'Mã',
             'product_category_id' => 'Loại sản phẩm',
             'project_id' => 'Dự án',
@@ -87,7 +88,6 @@ class Product extends \yii\db\ActiveRecord
             'price' => 'Giá 1 mét',
             'acreage' => 'Diện tích',
             'total_price' => 'Tổng giá',
-            'count' => 'Số lượng',
             'status_description' => 'Mô tả',
             'status' => 'Trạng thái',
             'deleted' => 'Deleted',
@@ -95,7 +95,11 @@ class Product extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_by' => 'Updated By',
             'updated_at' => 'Updated At',
-            'description' => 'Mô tả'
+            'description' => 'Mô tả',
+            'rooms' => 'Số phòng',
+            'bedrooms' => 'Số phòng ngủ',
+            'bathrooms' => 'Số phòng vệ sinh',
+            'floors' => 'Số tầng'
         ];
     }
 
