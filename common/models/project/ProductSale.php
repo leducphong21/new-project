@@ -33,7 +33,7 @@ use common\models\project\ModelProject;
  * @property integer $updated_by
  * @property string $updated_at
  */
-class Product extends \yii\db\ActiveRecord
+class ProductSale extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -63,11 +63,11 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['floors','bedrooms','rooms','bathrooms','product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
+            [['type','floors','bedrooms','rooms','bathrooms','product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at','address','description'], 'safe'],
             [['code'], 'string', 'max' => 8],
             [['name'], 'string', 'max' => 64],
-            [['product_category_id','county_id','city_id','price','acreage','name'],'required' ]
+            [['type','product_category_id','county_id','city_id','price','acreage','name'],'required' ]
         ];
     }
 
@@ -82,6 +82,7 @@ class Product extends \yii\db\ActiveRecord
             'code' => 'Mã',
             'product_category_id' => 'Loại sản phẩm',
             'project_id' => 'Dự án',
+            'type' => 'Bán/Thuê',
             'county_id' => 'Quận huyện',
             'city_id' => 'Tỉnh thành',
             'address' => 'Địa chỉ',
@@ -105,11 +106,11 @@ class Product extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\project\query\ProductQuery the active query used by this AR class.
+     * @return \common\models\project\query\ProductSaleQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\project\query\ProductQuery(get_called_class());
+        return new \common\models\project\query\ProductSaleQuery(get_called_class());
     }
     public function getAuthor()
     {

@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\project\Branch;
+use common\models\User;
 
 /**
  * BranchSearch represents the model behind the search form about `common\models\project\Branch`.
@@ -41,7 +42,8 @@ class BranchSearch extends Branch
      */
     public function search($params)
     {
-        $query = Branch::find();
+        $model = new User();
+        $query = Branch::find()->where(["created_by" => Yii::$app->user->id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

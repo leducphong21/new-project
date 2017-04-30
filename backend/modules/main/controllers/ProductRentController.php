@@ -10,8 +10,8 @@ use common\models\project\City;
 use common\models\project\ProductCategory;
 use common\models\project\ModelProject;
 use common\models\project\County;
-use common\models\project\Product;
-use common\models\project\ProductSearch;
+use common\models\project\ProductRent;
+use common\models\project\ProductRentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,7 +22,7 @@ use yii\web\response;
 /**
  * ProductController implements the CRUD actions for Product model.
  */
-class ProductController extends Controller
+class ProductRentController extends Controller
 {
     public function behaviors()
     {
@@ -42,7 +42,7 @@ class ProductController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new ProductRentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -71,11 +71,11 @@ class ProductController extends Controller
     public function actionCreate()
     {
         $modelImage = new UploadForm();
-        $model = new Product();
-        $maxId = Product::find()->orderBy('id DESC')->one();
+        $model = new ProductRent();
+        $maxId = ProductRent::find()->orderBy('id DESC')->one();
         $nextID = isset($maxId) ? $maxId->id : 0;
         $model->code = 'SP00' . ($nextID + 1);
-
+        $model->type = 2;
         $modelProductCategory = ProductCategory::find()->all();
         $modelProject = ModelProject::find()->all();
         $modelCounty = County::find()->all();
@@ -86,7 +86,6 @@ class ProductController extends Controller
             //Upload image
             $modelImage->imageFiles = UploadedFile::getInstances($modelImage, 'imageFiles');
             if ($modelImage->validate()&&$model->validate()) {
-                $model->total_price = $model->price * $model->acreage;
                 $imageName = $model->code;
                 foreach ($modelImage->imageFiles as $key => $file) {
                     $key++;
@@ -157,8 +156,8 @@ class ProductController extends Controller
             $dataPost = $_POST;
             $dataId = isset($dataPost['ids']) ? $dataPost['ids'] : [];
             foreach ($dataId as $item) {
-                /** @var Product $mode */
-                $mode = Product::find()->where(['id' => $item])->one();
+                /** @var ProductRent $mode */
+                $mode = ProductRent::find()->where(['id' => $item])->one();
                 if ($mode) {
                     $mode->deleted = 0;
                     $mode->save();
@@ -199,12 +198,12 @@ class ProductController extends Controller
      * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Product the loaded model
+     * @return ProductRent the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Product::findOne($id)) !== null) {
+        if (($model = ProductRent::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The Product item does not exist.');
@@ -220,7 +219,7 @@ class ProductController extends Controller
             $product = [];
             $dataCarOwner = [];
             if ($dataId && is_numeric($dataId)) {
-                $product = Product::find()->where(['id' => $dataId])->one();
+                $product = ProductRent::find()->where(['id' => $dataId])->one();
                 $product_category_id = $product->product_category_id;
                 $product_category = ProductCategory::find()->where(['id' => $product_category_id])->one()->name;
                 $county_id = $product->county_id;
@@ -247,7 +246,7 @@ class ProductController extends Controller
                 ];
                 return $res;
         } else {
-                $listProduct = Product::find()->all();
+                $listProduct = ProductRent::find()->all();
                 return $listProduct;
             }
         }

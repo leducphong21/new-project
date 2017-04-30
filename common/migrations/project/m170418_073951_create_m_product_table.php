@@ -17,6 +17,7 @@ class m170418_073951_create_m_product_table extends Migration
             'name' => $this->string(255),
             'code' => $this->string(8),
             'product_category_id' => $this->integer(),
+            'type' => $this->integer(),
             'project_id' => $this->integer(),
             'county_id' =>$this->integer(),
             'city_id' => $this->integer(),

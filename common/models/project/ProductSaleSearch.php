@@ -5,12 +5,12 @@ namespace common\models\project;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\project\Product;
+use common\models\project\ProductSale;
 
 /**
  * ProductSearch represents the model behind the search form about `common\models\project\Product`.
  */
-class ProductSearch extends Product
+class ProductSaleSearch extends ProductSale
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['name','floors','bedrooms','rooms','bathrooms','id', 'product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
+            [['type','name','floors','bedrooms','rooms','bathrooms','id', 'product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
             [['code', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -41,7 +41,7 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find()->active();
+        $query = ProductSale::find()->where(["type" => 1])->active();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,6 +58,7 @@ class ProductSearch extends Product
             'id' => $this->id,
             'name' => 'Tên sản phẩm',
             'product_category_id' => $this->product_categoru_id,
+            'type' => $this->type,
             'project_id' => $this->project_id,
             'county_id' => $this->county_id,
             'city_id' => $this->city_id,

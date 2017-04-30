@@ -118,36 +118,37 @@ $bundle = ProjectAsset::register($this);
                             'url'=>['/'],
                         ],
                         [
-                            'label'=> 'Nhân viên',
-                            'icon'=>'<i class="menu-icon glyphicon glyphicon-user"></i>',
-                            'url'=>['/main/employee'],
+                            'label'=> 'Đặt cọc',
+                            'icon'=>'<i class="menu-icon glyphicon glyphicon-oil"></i>',
+                            'url'=>['#'],
                         ],
                         [
-                            'label'=> 'QUản lý sản phẩm',
+                            'label'=> 'Lập hợp đồng',
+                            'icon'=>'<i class="menu-icon glyphicon glyphicon-oil"></i>',
+                            'url'=>['#'],
+                        ],
+                        [
+                            'label'=> 'Quản lý sản phẩm',
                             'url' => '#',
                             'is_toggle' => 1,
                             'icon'=>'<i class="menu-icon fa fa-th"></i>',
                             //'options'=>['class'=>'open'],
                             'items'=>[
                                 [
-                                    'label'=> 'Sản phẩm',
-                                    'url'=>['/main/product'],
+                                    'label'=> 'Bán',
+                                    'url'=>['/main/product-sale'],
+                                ],
+                                [
+                                    'label'=> 'Cho thuê',
+                                    'url'=>['/main/product-rent'],
+                                ],
+                                [
+                                    'label'=> 'Môi giới',
+                                    'url'=>['#'],
                                 ],
                             ]
                         ],
-                        [
-                            'label'=> 'Quản lý hợp đồng',
-                            'url' => '#',
-                            'is_toggle' => 1,
-                            'icon'=>'<i class="menu-icon fa fa-th"></i>',
-                            //'options'=>['class'=>'open'],
-                            'items'=>[
-                                    [
-                                        'label'=> 'Hợp đồng',
-                                        'url'=>['/main/project'],
-                                    ],
-                                ]
-                        ],
+
                         [
                             'label'=> 'Khách hàng',
                             'url' => '#',
@@ -228,18 +229,64 @@ $bundle = ProjectAsset::register($this);
                             ]
                         ],
                         [
-                            'label'=> 'Người dùng và hệ thống',
+                            'label'=> 'Quản lý cấp cao',
                             'url' => '#',
                             'is_toggle' => 1,
                             'icon'=>'<i class="menu-icon fa fa-th"></i>',
                             //'options'=>['class'=>'open'],
                             'items'=>[
                                 [
-                                    'label'=> 'Quản lý người dùng',
+                                    'label'=> 'Sản phẩm',
+                                    'url' => '#',
+                                    'is_toggle' => 1,
+                                    'items'=>[
+                                        [
+                                            'label'=> 'Duyệt bán',
+                                            'url' => '#',
+                                        ],
+                                        [
+                                            'label'=> 'Duyệt cho thuê',
+                                            'url' => '#',
+                                        ],
+                                    ]
+                                ],
+                                [
+                                    'label'=> 'Thống kê',
+                                    'url' => '#',
+                                    'is_toggle' => 1,
+                                    'items'=>[
+                                        [
+                                            'label'=> 'Thống kê 1',
+                                            'url' => '#',
+                                        ],
+                                        [
+                                            'label'=> 'Thống kê 2',
+                                            'url' => '#',
+                                        ],
+                                        [
+                                            'label'=> 'Thống kê ...',
+                                            'url' => '#',
+                                        ],
+                                    ]
+                                ],
+                                [
+                                    'label'=> 'Dự án',
+                                    'icon'=>'<i class="menu-icon  glyphicon glyphicon-stats"></i>',
+                                    'url'=>['/main/project'],
+                                ],
+                                [
+                                    'label'=> 'Nhân viên',
+                                    'icon'=>'<i class="menu-icon glyphicon glyphicon-user"></i>',
+                                    'url'=>['/main/employee'],
+                                ],
+                                [
+                                    'label'=> 'Quản lý tài khoản',
+                                    'icon'=>'<i class="menu-icon glyphicon glyphicon-user"></i>',
                                     'url'=>['/user/index'],
                                 ],
                             ]
                         ],
+
 
                     ]
                 ]) ?>

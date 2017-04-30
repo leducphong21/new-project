@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'summary' => '',
                             'options' => [
                                 'id' => 'w1',
-                                'style' => 'width:1500px'
+
                             ],
                             'columns' => [
                                 ['class' => 'yii\grid\CheckboxColumn'],
@@ -43,7 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                         return Html::a($model->name, ['update', 'id' =>$model->id], ['class' =>'alink']);
                                     },
                                 ],
-                                'code',
+                                [
+                                    'attribute' => 'code',
+                                    'contentOptions' => ['style' => 'width:70px;'],
+                                ],
                                 [
                                     'attribute' => 'product_category_id',
                                     'contentOptions' => ['style' => 'width:150px;'],
@@ -52,25 +55,23 @@ $this->params['breadcrumbs'][] = $this->title;
                                     },
                                 ],
                                 [
-                                    'attribute' => 'project_id',
-                                    'contentOptions' => ['style' => 'width:150px;'],
-                                    'value' => function ($model) {
-                                        return $model->project? $model->project->name : '';
-                                    },
+                                    'attribute' => 'acreage',
+                                    'contentOptions' => ['style' => 'width:80px;'],
+
                                 ],
-                                'price',
-                                'acreage',
                                 [
                                     'attribute' => 'total_price',
+                                    'contentOptions' => ['style' => 'width:120px;'],
+
                                 ],
                                 [
                                     'attribute' => 'status',
                                     'contentOptions' => ['style' => 'width:150px;'],
                                     'value' => function ($model) {
                                         if($model->status==1)
-                                            return 'Không mở bán';
+                                            return 'Không mở thuê';
                                         else if($model->status==2)
-                                            return 'Mở bán';
+                                            return 'Mở thuê';
                                     },
                                 ],
                                 [
@@ -180,14 +181,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         </tr>
                         <tr>
                             <td class="width">
-                                Giá mét:
-                            </td>
-                            <td>
-                                <p id="price"></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="width">
                                 Diện tích:
                             </td>
                             <td>
@@ -252,7 +245,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <?php
-        $url = url::to(['product/ajax-info']);
+        $url = url::to(['product-rent/ajax-info']);
     ?>
 <?php
 $app_css = <<<CSS
@@ -340,7 +333,6 @@ $(".activity-view-link").click(function() {
                         $('#code').html(data.code);
                         $('#product_category').html(data.product_category);
                         // $('#khuvuc').html(data.county + ' - ' + data.city);
-                        $('#price').html(data.price);
                         $('#acreage').html(data.acreage);
                         $('#address').html(data.address);
                         $('#total_price').html(data.total_price);
