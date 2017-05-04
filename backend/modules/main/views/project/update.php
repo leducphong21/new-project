@@ -2,18 +2,19 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\project\ModelProject */
 
-$this->title = 'Update Project: ' . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Projects', 'url' => ['index']];
+$this->title = 'Sửa tchi nhánh: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Product Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="project-update">
+<div class="product-category-update">
 
-    <?php echo $this->render('_form', [
+    <?= $this->render('_form', [
         'model' => $model,
+        'modelProjectCategory' => $modelProjectCategory,
+        'modelCounty' => $modelCounty,
+        'modelCity' => $modelCity
     ]) ?>
 
 </div>

@@ -3,11 +3,16 @@
 namespace backend\modules\main\controllers;
 
 use Yii;
+use common\models\project\ProjectCategory;
+use common\models\project\City;
+use common\models\project\County;
 use common\models\project\ModelProject;
 use common\models\project\ModelProjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\web\response;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -61,6 +66,13 @@ class ProjectController extends Controller
     public function actionCreate()
     {
         $model = new ModelProject();
+        $maxId = ModelProject::find()->orderBy('id DESC')->one();
+        $nextID = isset($maxId) ? $maxId->id : 0;
+        $model->code = 'DA00' .($nextID + 1);
+
+        $modelCounty = County::find()->all();
+        $modelCity = City::find()->all();
+        $modelProjectCategory = ProjectCategory::find()->all();
 
         if ($model->load(Yii::$app->request->post())) {
             if($model->save()){
@@ -72,7 +84,10 @@ class ProjectController extends Controller
            }
         }
         return $this->render('create', [
-        'model' => $model,
+            'model' => $model,
+            'modelCity' => ArrayHelper::map($modelCity, 'id', 'name'),
+            'modelCounty' => ArrayHelper::map($modelCounty, 'id', 'name'),
+            'modelProjectCategory' => ArrayHelper::map($modelProjectCategory, 'id', 'name'),
         ]);
     }
 
@@ -85,6 +100,9 @@ class ProjectController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $modelCounty = County::find()->all();
+        $modelCity = City::find()->all();
+        $modelProjectCategory = ProjectCategory::find()->all();
 
         if ($model->load(Yii::$app->request->post())) {
             if($model->save()){
@@ -96,10 +114,39 @@ class ProjectController extends Controller
             }
         }
         return $this->render('update', [
-        'model' => $model,
+            'model' => $model,
+            'modelCity' => ArrayHelper::map($modelCity, 'id', 'name'),
+            'modelCounty' => ArrayHelper::map($modelCounty, 'id', 'name'),
+            'modelProjectCategory' => ArrayHelper::map($modelProjectCategory, 'id', 'name'),
         ]);
     }
 
+    public function actionAjaxDelete()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if (isAjax()) {
+            $dataPost = $_POST;
+            $dataId = isset($dataPost['ids']) ? $dataPost['ids'] : [];
+            foreach ($dataId as $item) {
+                /** @var ModelProject $mode */
+                $mode = ModelProject::find()->where(['id' => $item])->one();
+                if ($mode) {
+                    $mode->deleted=0;
+                    $mode->save();
+                }
+            }
+            $res = [
+                'body' => 'Sucess',
+                'success' => true,
+            ];
+            return $res;
+        }
+        $res = [
+            'body' => 'Not allow',
+            'success' => false,
+        ];
+        return $res;
+    }
     /**
      * Deletes an existing Project model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -108,7 +155,9 @@ class ProjectController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->deleted =0;
+        $model->save();
 
         Yii::$app->getSession()->setFlash('alert', [
         'body' => 'Xóa dữ liệu thành công.',

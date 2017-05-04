@@ -18,8 +18,8 @@ class ModelProjectSearch extends ModelProject
     public function rules()
     {
         return [
-            [['id', 'project_category_id', 'areage', 'number_product', 'county_id', 'city', 'deleted', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'code', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'project_category_id', 'acreage', 'number_product', 'county_id', 'city_id', 'deleted', 'created_by', 'updated_by'], 'integer'],
+            [['name', 'code', 'created_at', 'updated_at','address'], 'safe'],
         ];
     }
 
@@ -57,10 +57,11 @@ class ModelProjectSearch extends ModelProject
         $query->andFilterWhere([
             'id' => $this->id,
             'project_category_id' => $this->project_category_id,
-            'areage' => $this->areage,
+            'address' => $this->address,
+            'acreage' => $this->acreage,
             'number_product' => $this->number_product,
             'county_id' => $this->county_id,
-            'city' => $this->city,
+            'city_id' => $this->city_id,
             'deleted' => $this->deleted,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at,

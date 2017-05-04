@@ -1,19 +1,20 @@
+
+
 <?php
 
 use yii\helpers\Html;
 
 
-/* @var $this yii\web\View */
-/* @var $model common\models\project\ModelProject */
 
-$this->title = 'Create Project';
-$this->params['breadcrumbs'][] = ['label' => 'Projects', 'url' => ['index']];
+$this->title = 'Thêm mới chi nhánh';
+$this->params['breadcrumbs'][] = ['label' => 'Thêm mới nhóm hàng hóa', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="project-create">
 
-    <?php echo $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+<?php echo $this->render('_form', [
+    'model' => $model,
+    'modelProjectCategory' => $modelProjectCategory,
+    'modelCounty' => $modelCounty,
+    'modelCity' => $modelCity
+]) ?>
 
-</div>

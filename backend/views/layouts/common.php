@@ -118,14 +118,29 @@ $bundle = ProjectAsset::register($this);
                             'url'=>['/'],
                         ],
                         [
-                            'label'=> 'Đặt cọc',
-                            'icon'=>'<i class="menu-icon glyphicon glyphicon-oil"></i>',
-                            'url'=>['#'],
-                        ],
-                        [
-                            'label'=> 'Lập hợp đồng',
-                            'icon'=>'<i class="menu-icon glyphicon glyphicon-oil"></i>',
-                            'url'=>['#'],
+                            'label'=> 'Quản lý hợp đồng',
+                            'url' => '#',
+                            'is_toggle' => 1,
+                            'icon'=>'<i class="menu-icon fa fa-th"></i>',
+                            //'options'=>['class'=>'open'],
+                            'items'=>[
+                                [
+                                    'label'=> 'Đặt cọc',
+                                    'url'=>['#'],
+                                ],
+                                [
+                                    'label'=> 'Lập hợp đồng',
+                                    'url'=>['#'],
+                                ],
+                                [
+                                    'label'=> 'Tổng hợp phiếu đặt cọc',
+                                    'url'=>['#'],
+                                ],
+                                [
+                                    'label'=> 'Tổng hợp hợp đồng',
+                                    'url'=>['#'],
+                                ],
+                            ]
                         ],
                         [
                             'label'=> 'Quản lý sản phẩm',

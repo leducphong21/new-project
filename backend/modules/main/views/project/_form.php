@@ -1,74 +1,133 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
+use kartik\select2\Select2;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\project\ModelProject */
-/* @var $form yii\bootstrap\ActiveForm */
+
 ?>
+<div class="tabbable">
+    <div class="widget-body">
+        <div class="table-toolbar">
+            <div class="widget">
+                <?php $form = ActiveForm::begin([
+                    'options' => [
+                        'class' => 'form-inline',
+                        'role' => 'form'
+                    ]
+                ]); ?>
+                <?php echo $form->errorSummary($model, [
+                    'class' => 'alert alert-warning alert-dismissible',
+                    'header' => ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-warning"></i> Vui lòng sửa các lỗi sau</h4>'
+                ]); ?>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group ">Tên dự án
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'name', ['class' => 'form-control', 'style' =>'width: 320px;'])?>
+                         </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                         <span class="input-icon icon-right">
+                         <label>Loại dự án</label>
+                             <?php
+                             echo Select2::widget([
+                                 'model' => $model,
+                                 'attribute' => 'project_category_id',
+                                 'data' => $modelProjectCategory,
+                                 'theme' => Select2::THEME_BOOTSTRAP,
+                                 'options' => [
+                                     'class' => 'form-control input-sm',
+                                     'placeholder' => 'Chọn loại dự án'
+                                 ],
+                                 'size' => Select2::SMALL,
+                                 'pluginOptions' => [
+                                     'tags' => false,
+                                     'tokenSeparators' => [',', ' '],
+                                     'maximumInputLength' => 20
+                                 ],
+                             ]);
+                             ?>
+                    </span>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group ">Địa chỉ
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'address', ['class' => 'form-control', 'style' =>'width: 320px;'])?>
+                         </span>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
 
-<div class="project-form">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group ">Diện tích
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'acreage', ['class' => 'form-control', 'style' =>'width: 320px;'])?>
+                         </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                         <span class="input-icon icon-right">
+                         <label>Tỉnh/Thành</label>
+                             <?php
+                             echo Select2::widget([
+                                 'model' => $model,
+                                 'attribute' => 'city_id',
+                                 'data' => $modelCity,
+                                 'theme' => Select2::THEME_BOOTSTRAP,
+                                 'options' => [
+                                     'class' => 'form-control input-sm',
+                                     'placeholder' => 'Chọn tỉnh thành'
+                                 ],
+                                 'size' => Select2::SMALL,
+                                 'pluginOptions' => [
+                                     'tags' => false,
+                                     'tokenSeparators' => [',', ' '],
+                                     'maximumInputLength' => 20
+                                 ],
+                             ]);
+                             ?>
+                    </span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="input-icon icon-right">
+                         <label>Quận/Huyện</label>
+                            <?php
+                            echo Select2::widget([
+                                'model' => $model,
+                                'attribute' => 'county_id',
+                                'data' => $modelCounty,
+                                'theme' => Select2::THEME_BOOTSTRAP,
+                                'options' => [
+                                    'class' => 'form-control input-sm',
+                                    'placeholder' => 'Chọn quận huyện'
+                                ],
+                                'size' => Select2::SMALL,
+                                'pluginOptions' => [
+                                    'tags' => false,
+                                    'tokenSeparators' => [',', ' '],
+                                    'maximumInputLength' => 20
+                                ],
+                            ]);
+                            ?>
+                    </span>
+                    </div>
 
-    <?php $form = ActiveForm::begin([
-    'layout' => 'horizontal',
-    ]); ?>
-
-    <?php echo $form->errorSummary($model); ?>
-
-    <?php echo $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?php echo $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
-
-    <?php echo $form->field($model, 'project_category_id')->textInput() ?>
-
-    <?php echo $form->field($model, 'areage')->textInput() ?>
-
-    <?php echo $form->field($model, 'number_product')->textInput() ?>
-
-    <?php echo $form->field($model, 'county_id')->textInput() ?>
-
-    <?php echo $form->field($model, 'city')->textInput() ?>
-
-    <?php echo $form->field($model, 'deleted')->textInput() ?>
-
-    <?php echo $form->field($model, 'created_by')->textInput() ?>
-
-    <?php echo $form->field($model, 'created_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'updated_by')->textInput() ?>
-
-    <?php echo $form->field($model, 'updated_at')->textInput() ?>
-
-
-    <div class="form-group">
-        <div class="col-sm-3 col-xs-2"></div>
-        <div class="col-sm-3 col-xs-4">
-            <?php 
-            echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span>'. Yii::t('backend', 'Back'), ['index'],['class'=>'btn btn-default btn200']);
-            ?>
-        </div>
-        <div class="col-sm-3 col-xs-4">
-            <?php echo  Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success btn200' : 'btn btn-primary btn200']) ?>
-        </div>
-        <div class="col-sm-3 col-xs-2">
-            <?php 
-            if (!$model->isNewRecord) {
-                echo Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id],
-                    [
-                        'class' => 'btn btn-warning btn200 bold',
-                        'data' => [
-                            'confirm' => 'Are you sure you want to delete?',
-                            'method' => 'post',
-                        ]
-                    ]);
-            }
-            ?>
+                </div>
+                <br>
+                <div class=" pull-right">
+                    <div class="btn-group pull-right">
+                        <button type="submit" class="btn btn-success" href="javascript:void(0);">
+                            <i class="fa fa-save"></i>Lưu lại</button>
+                        <a class="btn btn-danger" href="<?=\yii\helpers\Url::to(['index'])?>"><i class="fa fa-backward"></i>Quay lại</a>
+                    </div>
+                </div>
+                <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
-
-
-    <?php ActiveForm::end(); ?>
 
 </div>
