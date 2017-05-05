@@ -118,7 +118,7 @@ $bundle = ProjectAsset::register($this);
                             'url'=>['/'],
                         ],
                         [
-                            'label'=> 'Quản lý hợp đồng',
+                            'label'=> 'Hợp đồng',
                             'url' => '#',
                             'is_toggle' => 1,
                             'icon'=>'<i class="menu-icon fa fa-th"></i>',
@@ -143,7 +143,7 @@ $bundle = ProjectAsset::register($this);
                             ]
                         ],
                         [
-                            'label'=> 'Quản lý sản phẩm',
+                            'label'=> 'Sản phẩm',
                             'url' => '#',
                             'is_toggle' => 1,
                             'icon'=>'<i class="menu-icon fa fa-th"></i>',
