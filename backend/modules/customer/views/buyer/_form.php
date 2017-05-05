@@ -31,7 +31,8 @@ use yii\jui\DatePicker;
                     <div class="col-sm-4">
                         <div class="form-group ">Giới tính
                             <span class="input-icon icon-right">
-                             <?=Html::activeDropDownList($model, 'gender',['1'=>'Nam','2'=>'Nữ'],['prompt'=>'Chọn giới tính.....',['class' => 'form-control']],['maxlenght'=> true])?>
+                             <?=Html::activeDropDownList($model, 'gender',['1'=>'Nam','2'=>'Nữ'],['prompt'=>'Vui lòng chọn giới tính....',['class' => 'form-control'],['style'=> 'width:100% ']],['maxlenght'=> true])?>
+
                          </span>
                         </div>
                     </div>

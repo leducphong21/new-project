@@ -159,7 +159,7 @@ $bundle = ProjectAsset::register($this);
                                 ],
                                 [
                                     'label'=> 'Môi giới',
-                                    'url'=>['#'],
+                                    'url'=>['/main/product-medium'],
                                 ],
                             ]
                         ],
@@ -256,12 +256,12 @@ $bundle = ProjectAsset::register($this);
                                     'is_toggle' => 1,
                                     'items'=>[
                                         [
-                                            'label'=> 'Duyệt bán',
-                                            'url' => '#',
+                                            'label'=> 'Sản phẩm bán',
+                                            'url' => '/manager/product-sale',
                                         ],
                                         [
-                                            'label'=> 'Duyệt cho thuê',
-                                            'url' => '#',
+                                            'label'=> 'Sản phẩm cho thuê',
+                                            'url' => '/manager/product-rent',
                                         ],
                                     ]
                                 ],
