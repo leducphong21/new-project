@@ -262,6 +262,21 @@ $bundle = ProjectAsset::register($this);
                                     ]
                                 ],
                                 [
+                                    'label'=> 'Hợp đồng',
+                                    'url' => '#',
+                                    'is_toggle' => 1,
+                                    'items'=>[
+                                        [
+                                            'label'=> 'Tổng hợp phiếu đặt cọc',
+                                            'url' => '/manager/product-sale',
+                                        ],
+                                        [
+                                            'label'=> 'Tổng hợp hợp đồng',
+                                            'url' => '/manager/product-rent',
+                                        ],
+                                    ]
+                                ],
+                                [
                                     'label'=> 'Thống kê',
                                     'url' => '#',
                                     'is_toggle' => 1,
