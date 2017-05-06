@@ -77,7 +77,7 @@ class ModelProject extends \yii\db\ActiveRecord
             'code' => 'Mã',
             'project_category_id' => 'Loại dự án',
             'address' => 'Địa chỉ',
-            'areage' => 'Diện tích',
+            'acreage' => 'Diện tích',
             'number_product' => 'Số sản phẩm',
             'county_id' => 'Quận/Huyện',
             'city_id' => 'TỈnh/Thành',
