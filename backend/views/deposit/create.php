@@ -44,10 +44,10 @@ $this->title = "Lập phếu đặt cọc"
                 <br>
                 <div class="row">
                     <div class="col-sm-3">
-                        <div class="form-group ">Khách mua
+                        <div class="form-group ">Chủ sở hữu
                             <span class="input-icon icon-right">
                              <select style="width: 100%">
-                                 <option>Chọn khách mua</option>
+                                 <option>Chọn khách chủ sở hữu</option>
                                  <option>Khach 1</option>
                                  <option>Khach 2</option>
                                  <option>Khach 3</option>
@@ -56,7 +56,7 @@ $this->title = "Lập phếu đặt cọc"
                     </div>
                     <div class="col-sm-3">
                         <span class="input-icon icon-right">
-                         <label>Mã khách mua</label>
+                         <label>Mã chủ sở hữu</label>
                             <input disabled style="width: 100%"><span class="select2 select2-container select2-container--bootstrap input-sm" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-productsale-product_category_id-container"><span class="select2-selection__rendered" id="select2-productsale-product_category_id-container"></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>                    </span>
                     </div>
                     <div class="col-sm-3">
