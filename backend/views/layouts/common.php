@@ -126,19 +126,19 @@ $bundle = ProjectAsset::register($this);
                             'items'=>[
                                 [
                                     'label'=> 'Phiếu đặt cọc',
-                                    'url'=>['#'],
+                                    'url'=>['/deposit/create'],
                                 ],
                                 [
                                     'label'=> 'Lập hợp đồng',
-                                    'url'=>['#'],
+                                    'url'=>['/contract/create'],
                                 ],
                                 [
                                     'label'=> 'Tổng hợp phiếu đặt cọc',
-                                    'url'=>['#'],
+                                    'url'=>['/deposit/index'],
                                 ],
                                 [
                                     'label'=> 'Tổng hợp hợp đồng',
-                                    'url'=>['#'],
+                                    'url'=>['/contract/index'],
                                 ],
                             ]
                         ],
@@ -508,11 +508,11 @@ $bundle = ProjectAsset::register($this);
                     </ul>
 
                     <div class=" pull-right">
-                        <a class="btn btn-default" href="<?=Url::to(['#'])?>">
+                        <a class="btn btn-default" href="/deposit/create">
                             <i class="fa fa-plus withe"></i>Phiếu đặt cọc
                         </a>
 
-                        <a class="btn btn-default" href="<?=Url::to(['#'])?>">
+                        <a class="btn btn-default" href="/contract/create">
                             <i class="fa fa-plus withe"></i>Lập hợp đồng
                         </a>
 
