@@ -73,19 +73,19 @@ class ModelProject extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'code' => 'Code',
-            'project_category_id' => 'Project Category ID',
+            'name' => 'Tên dự án',
+            'code' => 'Mã',
+            'project_category_id' => 'Loại dự án',
             'address' => 'Địa chỉ',
-            'areage' => 'Areage',
-            'number_product' => 'Number Product',
-            'county_id' => 'County ID',
-            'city_id' => 'City',
+            'areage' => 'Diện tích',
+            'number_product' => 'Số sản phẩm',
+            'county_id' => 'Quận/Huyện',
+            'city_id' => 'TỈnh/Thành',
             'deleted' => 'Deleted',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'created_by' => 'Người tạo',
+            'created_at' => 'Ngày tạo',
+            'updated_by' => 'Người sửa',
+            'updated_at' => 'Ngày sửa',
         ];
     }
 
