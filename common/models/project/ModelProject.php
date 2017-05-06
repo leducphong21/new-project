@@ -67,7 +67,7 @@ class ModelProject extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * @inheritdocaa
      */
     public function attributeLabels()
     {
