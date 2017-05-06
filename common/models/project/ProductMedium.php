@@ -63,7 +63,7 @@ class ProductMedium extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type','floors','bedrooms','rooms','bathrooms','product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
+            [['interest','type','floors','bedrooms','rooms','bathrooms','product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at','address','description'], 'safe'],
             [['code'], 'string', 'max' => 8],
             [['name'], 'string', 'max' => 64],
@@ -89,6 +89,7 @@ class ProductMedium extends \yii\db\ActiveRecord
             'price' => 'Giá 1 mét',
             'acreage' => 'Diện tích',
             'total_price' => 'Tổng giá',
+            'interest' => 'Lãi',
             'status_description' => 'Mô tả',
             'status' => 'Trạng thái',
             'deleted' => 'Deleted',

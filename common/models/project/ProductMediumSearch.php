@@ -18,7 +18,7 @@ class ProductMediumSearch extends ProductMedium
     public function rules()
     {
         return [
-            [['type','name','floors','bedrooms','rooms','bathrooms','id', 'product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
+            [['interest','type','name','floors','bedrooms','rooms','bathrooms','id', 'product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
             [['code', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -65,6 +65,7 @@ class ProductMediumSearch extends ProductMedium
             'price' => $this->price,
             'acreage' => $this->acreage,
             'total_price' => $this->total_price,
+            'interest' => $this->interest,
             'status_description' => $this->status_description,
             'status' => $this->status,
             'deleted' => $this->deleted,

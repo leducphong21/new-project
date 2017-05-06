@@ -66,6 +66,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'contentOptions' => ['style' => 'width:90px;'],
                                 ],
                                 [
+                                    'attribute' => 'interest',
+                                    'contentOptions' => ['style' => 'width:90px;'],
+                                ],
+                                [
                                     'attribute' => 'status',
                                     'contentOptions' => ['style' => 'width:150px;'],
                                     'value' => function ($model) {

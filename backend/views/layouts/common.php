@@ -125,7 +125,7 @@ $bundle = ProjectAsset::register($this);
                             //'options'=>['class'=>'open'],
                             'items'=>[
                                 [
-                                    'label'=> 'Đặt cọc',
+                                    'label'=> 'Phiếu đặt cọc',
                                     'url'=>['#'],
                                 ],
                                 [

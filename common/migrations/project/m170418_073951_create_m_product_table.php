@@ -24,6 +24,7 @@ class m170418_073951_create_m_product_table extends Migration
             'price' => $this->integer(),
             'acreage' => $this->integer(),
             'total_price' => $this->integer(),
+            'interest' => $this->integer(),
             'status_description' => $this->smallInteger(8)->defaultValue(1),
             'status' => $this->smallInteger(8)->defaultValue(1),
             'deleted' => $this->smallInteger(8)->defaultValue(1),

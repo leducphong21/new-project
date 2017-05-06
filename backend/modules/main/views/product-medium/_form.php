@@ -140,7 +140,49 @@ use kartik\select2\Select2;
                          </span>
                         </div>
                     </div>
+                    <div class="col-sm-3">
+                        <div class="form-group ">Lãi
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'interest', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
+                    </div>
 
+                </div>
+                <br>
+                <h1>Thông tin chủ sở hữu</h1>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Chủ sở hữu</label>
+                            <span class="input-icon icon-right">
+                                        <div class="input-group input-group-sm group-select_car_no select2-bootstrap-append"><select id="select_car_no" class="form-control input-sm select2-hidden-accessible" name="CarTicket[id]" data-s2-options="s2options_6cc131ae" data-krajee-select2="select2_1b68687e" style="display:none" tabindex="-1" aria-hidden="true">
+<option value="">Chọn chủ sở hữu ...</option>
+<option value=""></option>
+</select><span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-select_car_no-container"><span class="select2-selection__rendered" id="select2-select_car_no-container"><span class="select2-selection__placeholder">Chọn biển số xe ...</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span><span class="input-group-addon"><i id="btnAddNewCar" class="fa fa-plus blue imouse" title="Thêm mới xe"></i></span></div>                                     </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group ">Địa chỉ
+                            <span class="input-icon icon-right">
+                             <input class="form-control" disabled="disabled" style="width: 100%" />
+                         </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group ">Điện thoại
+                            <span class="input-icon icon-right">
+                             <input class="form-control" disabled="disabled" style="width: 100%" />
+                         </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group ">Email
+                            <span class="input-icon icon-right">
+                             <input class="form-control" disabled="disabled" style="width: 100%" />
+                         </span>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <h1>Mô tả chi tiết sản phẩm</h1>

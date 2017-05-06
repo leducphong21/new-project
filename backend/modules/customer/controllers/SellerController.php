@@ -3,11 +3,13 @@
 namespace backend\modules\customer\controllers;
 
 use Yii;
+use yii\db\Query;
 use common\models\project\Seller;
 use common\models\project\SellerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\response;
 
 /**
  * SellerController implements the CRUD actions for Seller model.

@@ -3,9 +3,10 @@
 namespace backend\modules\main\controllers;
 use common\models\project\UploadForm;
 use yii\web\UploadedFile;
-
+use yii\db\Query;
 use backend\assets_b\Project;
 use Yii;
+use common\models\project\Seller;
 use common\models\project\City;
 use common\models\project\ProductCategory;
 use common\models\project\ModelProject;
@@ -210,6 +211,8 @@ class ProductMediumController extends Controller
             throw new NotFoundHttpException('The Product item does not exist.');
         }
     }
+
+
 
     public function actionAjaxInfo()
     {
