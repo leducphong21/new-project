@@ -5,7 +5,7 @@ use backend\grid\GridView;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
-$this->title = 'Danh sách loại sản phẩm';
+$this->title = 'Danh sách sản phẩm môi giới';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

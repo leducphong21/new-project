@@ -21,8 +21,6 @@ class UserHelper extends Inflector
         $dataRole = [
             'administrator' => 'Quản trị viên',
             'sales' => 'Kinh doanh',
-            'marketing' => 'Marketing',
-            'advisor' => 'Tư vấn viên',
         ];
         return $dataRole;
     }

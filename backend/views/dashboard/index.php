@@ -7,6 +7,6 @@ use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $dataCount */
-$this->title = 'Dashboard';
+$this->title = 'Bảng thông tin';
 ?>
 
