@@ -21,7 +21,7 @@ $this->title = "Lập phếu đặt cọc"
                     </div>
                     <div class="col-sm-3">
                         <span class="input-icon icon-right">
-                         <label>Mã khách mua</label>
+                         <label>Mã sản phẩm</label>
                             <input disabled style="width: 100%"><span class="select2 select2-container select2-container--bootstrap input-sm" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-productsale-product_category_id-container"><span class="select2-selection__rendered" id="select2-productsale-product_category_id-container"></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>                    </span>
                     </div>
                     <div class="col-sm-3">
@@ -37,7 +37,7 @@ $this->title = "Lập phếu đặt cọc"
                     </div>
                     <div class="col-sm-3">
                         <span class="input-icon icon-right">
-                         <label>Mã sản phẩm</label>
+                         <label>Mã khách mua</label>
                             <input disabled style="width: 100%"><span class="select2 select2-container select2-container--bootstrap input-sm" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-productsale-product_category_id-container"><span class="select2-selection__rendered" id="select2-productsale-product_category_id-container"><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>                    </span>
                     </div>
                 </div>
