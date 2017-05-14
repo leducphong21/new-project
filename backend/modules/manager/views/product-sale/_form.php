@@ -3,7 +3,26 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
+use kartik\depdrop\DepDrop;
+use common\helpers\project\ProjectHelper;
+use yii\helpers\Url;
+use common\helpers\project\CityHelper;
 
+$modelPortion = [];
+if($model->project){
+    $modelPortion = ProjectHelper::getPortion($model->project->id);
+}
+
+$modelLand = [];
+if($model->portion){
+    $modelLand = ProjectHelper::getLand($model->portion->id);
+}
+
+$modelCounty = [];
+if($model->county){
+    $modelCounty = CityHelper::getCounty($model->county->id);
+}
+?>
 ?>
 <div class="tabbable">
     <div class="widget-body">
@@ -64,7 +83,8 @@ use kartik\select2\Select2;
                                 'theme' => Select2::THEME_BOOTSTRAP,
                                 'options' => [
                                     'class' => 'form-control input-sm',
-                                    'placeholder' => 'Chọn dự án'
+                                    'placeholder' => 'Chọn dự án',
+                                    'id' => 'project_id'
                                 ],
                                 'size' => Select2::SMALL,
                                 'pluginOptions' => [
@@ -77,6 +97,54 @@ use kartik\select2\Select2;
                     </span>
                     </div>
                     <div class="col-sm-3">
+                        <label>Lô đất</label>
+                        <span class="input-icon icon-right">
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'portion_id',
+                                        'options'=> [
+                                            'id'=>'portion_id',
+                                            'class' => 'form-control input-sm'
+                                        ],
+                                        'data'=> $modelPortion,
+                                        'pluginOptions'=>[
+                                            'depends'=>['project_id'],
+                                            'placeholder'=> 'Chọn lô đất ...',
+                                            'url'=>Url::to(['/main/portion/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>Thửa đất</label>
+                        <span class="input-icon icon-right">
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'land_id',
+                                        'options'=> [
+                                            'id'=>'land_id',
+                                            'class' => 'form-control input-sm',
+                                        ],
+                                        'data'=> $modelLand,
+                                        'pluginOptions'=>[
+                                            'depends'=>['portion_id'],
+                                            'placeholder'=> 'Chọn thửa đất ...',
+                                            'url'=>Url::to(['/main/land/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
+                    </div>
+                    <div class="col-sm-3">
                          <span class="input-icon icon-right">
                          <label>Chọn tỉnh thành</label>
                              <?php
@@ -87,7 +155,8 @@ use kartik\select2\Select2;
                                  'theme' => Select2::THEME_BOOTSTRAP,
                                  'options' => [
                                      'class' => 'form-control input-sm',
-                                     'placeholder' => 'Chọn tỉnh thành'
+                                     'placeholder' => 'Chọn tỉnh thành',
+                                     'id' => 'city_id'
                                  ],
                                  'size' => Select2::SMALL,
                                  'pluginOptions' => [
@@ -99,32 +168,27 @@ use kartik\select2\Select2;
                              ?>
                     </span>
                     </div>
-
-                </div>
-                <br>
-                <div class="row">
                     <div class="col-sm-3">
-                         <span class="input-icon icon-right">
-                         <label>Chọn quận huyện</label>
-                             <?php
-                             echo Select2::widget([
-                                 'model' => $model,
-                                 'attribute' => 'county_id',
-                                 'data' => $modelCounty,
-                                 'theme' => Select2::THEME_BOOTSTRAP,
-                                 'options' => [
-                                     'class' => 'form-control input-sm',
-                                     'placeholder' => 'Chọn quận huyện'
-                                 ],
-                                 'size' => Select2::SMALL,
-                                 'pluginOptions' => [
-                                     'tags' => false,
-                                     'tokenSeparators' => [',', ' '],
-                                     'maximumInputLength' => 20
-                                 ],
-                             ]);
-                             ?>
-                    </span>
+                        <label>Quận huyện</label>
+                        <span class="input-icon icon-right">
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'county_id',
+                                        'options'=> [
+                                            'id'=>'county_id',
+                                            'class' => 'form-control input-sm'
+                                        ],
+                                        'data'=> $modelCounty,
+                                        'pluginOptions'=>[
+                                            'depends'=>['city_id'],
+                                            'placeholder'=> 'Chọn quận huyện ...',
+                                            'url'=>Url::to(['/extra/county/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group ">Giá mết vuông
@@ -133,6 +197,11 @@ use kartik\select2\Select2;
                          </span>
                         </div>
                     </div>
+
+
+                </div>
+                <br>
+                <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group ">Diện tích
                             <span class="input-icon icon-right">
@@ -148,7 +217,6 @@ use kartik\select2\Select2;
                          </span>
                         </div>
                     </div>
-
                 </div>
                 <br>
                 <h1>Mô tả chi tiết sản phẩm</h1>

@@ -31,13 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'summary' => '',
                             'options' => [
                                 'id' => 'w1',
+                                'style'=>['width'=> '1500px']
 
                             ],
                             'columns' => [
                                 ['class' => 'yii\grid\CheckboxColumn'],
                                 [
                                     'attribute' => 'name',
-                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'contentOptions' => ['style' => 'width:250px;'],
                                     'format' => 'raw',
                                     'value' => function ($model) {
                                         return Html::a($model->name, ['update', 'id' =>$model->id], ['class' =>'alink']);
@@ -49,9 +50,30 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ],
                                 [
                                     'attribute' => 'product_category_id',
-                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'contentOptions' => ['style' => 'width:200px;'],
                                     'value' => function ($model) {
                                         return $model->productCategory? $model->productCategory->name : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'project_id',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'value' => function ($model) {
+                                        return $model->project? $model->project->name : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'portion_id',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'value' => function ($model) {
+                                        return $model->portion? $model->portion->name : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'land_id',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'value' => function ($model) {
+                                        return $model->land? $model->land->name : '';
                                     },
                                 ],
                                 [
@@ -87,7 +109,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 [
                                     'class' => 'backend\grid\ActionColumn',
                                     'template'=>'{view}{my_button}{update} {delete}',
-                                    'contentOptions' => ['style' => 'width:250px;text-align:center'],
+                                    'contentOptions' => ['style' => 'width:300px;text-align:center'],
                                     'buttons' => [
                                         'view' => function ($url, $model, $key) {
                                             return Html::button('<span class="glyphicon glyphicon-eye-open"></span> Chi tiết', [
@@ -163,14 +185,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <p id="product_category"></p>
                             </td>
                         </tr>
-<!--                        <tr>-->
-<!--                            <td class="width">-->
-<!--                                Khu vực:-->
-<!--                            </td>-->
-<!--                            <td>-->
-<!--                                <p id="khuvuc"></p>-->
-<!--                            </td>-->
-<!--                        </tr>-->
+                        <!--                        <tr>-->
+                        <!--                            <td class="width">-->
+                        <!--                                Khu vực:-->
+                        <!--                            </td>-->
+                        <!--                            <td>-->
+                        <!--                                <p id="khuvuc"></p>-->
+                        <!--                            </td>-->
+                        <!--                        </tr>-->
                         <tr>
                             <td class="width">
                                 Địa chỉ:
@@ -244,9 +266,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         </div>
     </div>
-    <?php
-        $url = url::to(['product-rent/ajax-info']);
-    ?>
+<?php
+$url = url::to(['product-rent/ajax-info']);
+?>
 <?php
 $app_css = <<<CSS
 input[type=checkbox], input[type=radio]
