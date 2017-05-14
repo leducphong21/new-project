@@ -35,19 +35,6 @@ class m150725_192740_seed_data extends Migration
             'updated_at' => time(),
         ]);
 
-        $this->insert('{{%article_category}}', [
-            'id' => 1,
-            'slug' => 'news',
-            'title' => 'News',
-            'status' => \common\models\ArticleCategory::STATUS_ACTIVE,
-            'created_at' => time()
-        ]);
-
-        $this->insert('{{%key_storage_item}}', [
-            'key' => 'backend.theme-skin',
-            'value' => 'skin-blue',
-            'comment' => 'skin-blue, skin-black, skin-purple, skin-green, skin-red, skin-yellow'
-        ]);
 
         $this->insert('{{%key_storage_item}}', [
             'key' => 'backend.layout-fixed',
@@ -99,9 +86,6 @@ class m150725_192740_seed_data extends Migration
             ],
         ]);
 
-        $this->delete('{{%article_category}}', [
-            'id' => 1
-        ]);
 
         $this->delete('{{%page}}', [
             'slug' => 'about'

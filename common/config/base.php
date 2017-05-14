@@ -164,18 +164,8 @@ $config = [
             ],
             require(Yii::getAlias('@frontend/config/_urlManager.php'))
         ),
-        'urlManagerStorage' => \yii\helpers\ArrayHelper::merge(
-            [
-                'baseUrl'=>Yii::getAlias('@storageUrl')
-            ],
-            require(Yii::getAlias('@storage/config/_urlManager.php'))
-        ),
-        'urlManagerApi' => \yii\helpers\ArrayHelper::merge(
-            [
-                'baseUrl'=>Yii::getAlias('@apiUrl')
-            ],
-            require(Yii::getAlias('@api/config/_urlManager.php'))
-        )
+
+
     ],
     'params' => [
         'adminEmail' => env('ADMIN_EMAIL'),
