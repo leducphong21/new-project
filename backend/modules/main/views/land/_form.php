@@ -28,7 +28,7 @@ if($model->project){
                 ]); ?>
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="form-group ">Tên dự án
+                        <div class="form-group ">Tên thửa đất
                             <span class="input-icon icon-right">
                              <?=Html::activeTextInput($model, 'name', ['class' => 'form-control', 'style' =>'width: 320px;'])?>
                          </span>
