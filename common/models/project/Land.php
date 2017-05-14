@@ -56,7 +56,7 @@ class Land extends \yii\db\ActiveRecord
     {
         return [
             [['project_id', 'deleted', 'portion_id', 'created_by', 'updated_by'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at','acreage','location'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 8],
         ];
@@ -69,15 +69,17 @@ class Land extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Tên thửa đất',
             'code' => 'Code',
-            'project_id' => 'Project ID',
+            'project_id' => 'Dự án',
+            'acreage'=> 'Diện tích',
+            'location'=> 'Vị trí',
             'deleted' => 'Deleted',
-            'portion_id' => 'Portion ID',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'portion_id' => 'Lô đất',
+            'created_by' => 'Người tạo',
+            'created_at' => 'Ngày tạo',
+            'updated_by' => 'Người sửa',
+            'updated_at' => 'Ngày sửa',
         ];
     }
 

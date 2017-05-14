@@ -28,14 +28,13 @@ if($model->project){
                 ]); ?>
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="form-group ">Tên thửa đất
+                        <div>Tên thửa đất
                             <span class="input-icon icon-right">
-                             <?=Html::activeTextInput($model, 'name', ['class' => 'form-control', 'style' =>'width: 320px;'])?>
+                             <?=Html::activeTextInput($model, 'name', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
                          </span>
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="form-group">
                             <label>Dự án</label>
                             <span class="input-icon icon-right">
                                     <?php
@@ -58,11 +57,9 @@ if($model->project){
                                     ]);
                                     ?>
                                 </span>
-                        </div>
                     </div>
 
                     <div class="col-sm-4">
-                        <div class="form-group">
                             <label>Lô đất</label>
                             <span class="input-icon icon-right">
                                     <?php
@@ -86,7 +83,23 @@ if($model->project){
                         </div>
                     </div>
                 </div>
-
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group ">Diện tích thửa
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'acreage', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group ">Vị trí thửa
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'location', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
+                    </div>
+                </div>
                 <br>
                 <div class=" pull-right">
                     <div class="btn-group pull-right">

@@ -19,7 +19,7 @@ class LandSearch extends Land
     {
         return [
             [['id', 'project_id', 'deleted', 'portion_id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'code', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'code', 'created_at', 'updated_at','acreage','location'], 'safe'],
         ];
     }
 
@@ -57,6 +57,8 @@ class LandSearch extends Land
         $query->andFilterWhere([
             'id' => $this->id,
             'project_id' => $this->project_id,
+            'acreage'=> $this->acreage,
+            'location'=>$this->location,
             'deleted' => $this->deleted,
             'portion_id' => $this->portion_id,
             'created_by' => $this->created_by,

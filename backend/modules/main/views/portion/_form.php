@@ -24,7 +24,7 @@ use kartik\select2\Select2;
                     <div class="col-sm-4">
                         <div class="form-group ">Tên lô đất
                             <span class="input-icon icon-right">
-                             <?=Html::activeTextInput($model, 'name', ['class' => 'form-control', 'style' =>'width: 320px;'])?>
+                             <?=Html::activeTextInput($model, 'name', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
                          </span>
                         </div>
                     </div>
@@ -50,6 +50,24 @@ use kartik\select2\Select2;
                         ]);
                         ?>
                     </span>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group ">Diện tích lô đất
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'acreage', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group ">Vị trí lô đất
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'location', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
+                        </div>
                     </div>
                 </div>
                 <br>

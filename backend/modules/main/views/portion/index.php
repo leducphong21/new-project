@@ -49,6 +49,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                     },
                                 ],
                                 [
+                                    'attribute' => 'acreage',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                ],
+                                [
+                                    'attribute' => 'location',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                ],
+                                [
                                     'attribute' => 'created_by',
                                     'value' => function ($model) {
                                         return $model->author? $model->author->username : '';

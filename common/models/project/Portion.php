@@ -55,7 +55,7 @@ class Portion extends \yii\db\ActiveRecord
     {
         return [
             [['project_id', 'deleted', 'created_by', 'updated_by'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at','acreage','location'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 8],
         ];
@@ -71,6 +71,8 @@ class Portion extends \yii\db\ActiveRecord
             'name' => 'Tên lô đất',
             'code' => 'Mã',
             'project_id' => 'Dự án',
+            'acreage'=> 'Diện tích',
+            'location'=> 'Vị trí',
             'deleted' => 'Deleted',
             'created_by' => 'Người tạo',
             'created_at' => 'Ngày tạo',

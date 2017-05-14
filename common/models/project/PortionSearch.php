@@ -19,7 +19,7 @@ class PortionSearch extends Portion
     {
         return [
             [['id', 'project_id', 'deleted', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'code', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'code', 'created_at', 'updated_at','acreage','location'], 'safe'],
         ];
     }
 
@@ -57,6 +57,8 @@ class PortionSearch extends Portion
         $query->andFilterWhere([
             'id' => $this->id,
             'project_id' => $this->project_id,
+            'acreage'=> $this->acreage,
+            'location'=>$this->location,
             'deleted' => $this->deleted,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at,
