@@ -4,20 +4,19 @@ namespace backend\modules\main\controllers;
 
 use Yii;
 use common\models\project\ModelProject;
-use common\models\project\Portion;
-use common\models\project\PortionSearch;
+use common\models\project\Land;
+use common\models\project\LandSearch;
 use yii\base\Model;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
 
 /**
- * PortionController implements the CRUD actions for Portion model.
+ * LandController implements the CRUD actions for Land model.
  */
-class PortionController extends Controller
+class LandController extends Controller
 {
     public function behaviors()
     {
@@ -32,12 +31,12 @@ class PortionController extends Controller
     }
 
     /**
-     * Lists all Portion models.
+     * Lists all Land models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PortionSearch();
+        $searchModel = new LandSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,7 +46,7 @@ class PortionController extends Controller
     }
 
     /**
-     * Displays a single Portion model.
+     * Displays a single Land model.
      * @param integer $id
      * @return mixed
      */
@@ -59,18 +58,18 @@ class PortionController extends Controller
     }
 
     /**
-     * Creates a new Portion model.
+     * Creates a new Land model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Portion();
-        $maxId = Portion::find()->orderBy('id DESC')->one();
-        $nextID = isset($maxId) ? $maxId->id : 0;
-        $model->code = 'LD00' . ($nextID + 1);
-
+        $model = new Land();
         $modelProject = ModelProject::find()->all();
+
+        $maxId = Land::find()->orderBy('id DESC')->one();
+        $nextID = isset($maxId) ? $maxId->id : 0;
+        $model->code = 'TD00' . ($nextID + 1);
         if ($model->load(Yii::$app->request->post())) {
             if($model->save()){
             Yii::$app->getSession()->setFlash('alert', [
@@ -82,12 +81,12 @@ class PortionController extends Controller
         }
         return $this->render('create', [
             'model' => $model,
-            'modelProject' => ArrayHelper::map($modelProject, 'id', 'name'),
+            'modelProject' => ArrayHelper::map($modelProject,'id','name'),
         ]);
     }
 
     /**
-     * Updates an existing Portion model.
+     * Updates an existing Land model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -111,6 +110,23 @@ class PortionController extends Controller
         ]);
     }
 
+    /**
+     * Deletes an existing Land model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        Yii::$app->getSession()->setFlash('alert', [
+        'body' => 'Xóa dữ liệu thành công.',
+        'options' => ['class' => 'ialert alert-success']
+        ]);
+        return $this->redirect(['index']);
+    }
+
     public function actionAjaxDelete()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -118,8 +134,8 @@ class PortionController extends Controller
             $dataPost = $_POST;
             $dataId = isset($dataPost['ids']) ? $dataPost['ids'] : [];
             foreach ($dataId as $item) {
-                /** @var Portion $mode */
-                $mode = Portion::find()->where(['id' => $item])->one();
+                /** @var Land $mode */
+                $mode = Land::find()->where(['id' => $item])->one();
                 if ($mode) {
                     $mode->deleted = 0;
                     $mode->save();
@@ -138,60 +154,20 @@ class PortionController extends Controller
         return $res;
     }
     /**
-     * Deletes an existing Portion model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        Yii::$app->getSession()->setFlash('alert', [
-        'body' => 'Xóa dữ liệu thành công.',
-        'options' => ['class' => 'ialert alert-success']
-        ]);
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Portion model based on its primary key value.
+     * Finds the Land model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Portion the loaded model
+     * @return Land the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Portion::findOne($id)) !== null) {
+        if (($model = Land::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The Portion item does not exist.');
+            throw new NotFoundHttpException('The Land item does not exist.');
         }
     }
 
-    public function actionList()
-    {
-        if (isset($_POST['depdrop_parents'])) {
-            $out = [];
-            $parents = $_POST['depdrop_parents'];
-            if ($parents != null) {
-                $id_project = $parents[0];
-                $out = Portion::find()
-                    ->where(['project_id' => $id_project])
-                    ->orderBy('id desc')
-                    ->asArray()->all();
-                $data = [];
-                foreach ($out as $item) {
-                    $data_model = [];
-                    $data_model['id'] = intval($item['id']);
-                    $data_model['name'] = $item['name'];
-                    $data[] = $data_model;
-                }
-                echo Json::encode(['output' => $data, 'selected' => '']);
-                return;
-            }
-        }
-        echo Json::encode(['output' => '', 'selected' => '']);
-    }
+
 }
