@@ -42,6 +42,8 @@ class m170418_073951_create_m_product_table extends Migration
             'bedrooms' => $this->integer(),
             'bathrooms' => $this->integer(),
             'description' => $this->text(),
+            'land_id'=>$this->integer(),
+            'portion_id'=>$this->integer(),
         ]);
     }
 
