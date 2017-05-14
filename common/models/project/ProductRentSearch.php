@@ -19,7 +19,7 @@ class ProductRentSearch extends ProductRent
     {
         return [
             [['type','name','floors','bedrooms','rooms','bathrooms','id', 'product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
-            [['code', 'created_at', 'updated_at'], 'safe'],
+            [['code', 'created_at', 'updated_at','portion_id','land_id'], 'safe'],
         ];
     }
 
@@ -75,7 +75,9 @@ class ProductRentSearch extends ProductRent
             'rooms' => $this->rooms,
             'bedrooms' => $this->bedrooms,
             'bathrooms' => $this->bathrooms,
-            'foors' => $this->floors
+            'foors' => $this->floors,
+            'portion_id' => $this->project_id,
+            'land_id' => $this->land_id
         ]);
 
         $query->andFilterWhere(['like', 'code', $this->code]);

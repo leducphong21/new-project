@@ -13,6 +13,7 @@ use common\models\project\City;
 use common\models\project\County;
 use common\models\project\ProductCategory;
 use common\models\project\ModelProject;
+use common\models\project\Portion;
 
 /**
  * This is the model class for table "m_product".
@@ -65,7 +66,7 @@ class ProductMedium extends \yii\db\ActiveRecord
     {
         return [
             [['interest','type','floors','bedrooms','rooms','bathrooms','product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
-            [['created_at', 'updated_at','address','description'], 'safe'],
+            [['created_at', 'updated_at','address','description','portion_id','land_id'], 'safe'],
             [['code'], 'string', 'max' => 8],
             [['name'], 'string', 'max' => 64],
             [['type','product_category_id','county_id','city_id','price','acreage','name','name_seller','address_seller','mobile_seller','email_seller'],'required' ]
@@ -107,7 +108,8 @@ class ProductMedium extends \yii\db\ActiveRecord
             'address_seller' => "Địa chỉ",
             'mobile_seller' => 'Điện thoại',
             'email_seller'=>'Thư điện tử',
-
+            'portion_id' => "Lô đất",
+            'land_id' => "Thửa đất"
         ];
     }
 
@@ -146,5 +148,13 @@ class ProductMedium extends \yii\db\ActiveRecord
     public function getSeller()
     {
         return $this->hasOne(Seller::className(), ['id' => 'name_seller']);
+    }
+    public function getPortion()
+    {
+        return $this->hasOne(Portion::className(), ['id' => 'portion_id']);
+    }
+    public function getLand()
+    {
+        return $this->hasOne(Land::className(), ['id' => 'land_id']);
     }
 }

@@ -12,6 +12,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 
 /**
  * LandController implements the CRUD actions for Land model.
@@ -169,5 +170,28 @@ class LandController extends Controller
         }
     }
 
-
+    public function actionList()
+    {
+        if (isset($_POST['depdrop_parents'])) {
+            $out = [];
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $id_portion = $parents[0];
+                $out = Land::find()
+                    ->where(['portion_id' => $id_portion])
+                    ->orderBy('id desc')
+                    ->asArray()->all();
+                $data = [];
+                foreach ($out as $item) {
+                    $data_model = [];
+                    $data_model['id'] = intval($item['id']);
+                    $data_model['name'] = $item['name'];
+                    $data[] = $data_model;
+                }
+                echo Json::encode(['output' => $data, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
+    }
 }

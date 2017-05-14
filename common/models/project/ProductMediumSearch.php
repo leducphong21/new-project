@@ -19,7 +19,7 @@ class ProductMediumSearch extends ProductMedium
     {
         return [
             [['interest','type','name','floors','bedrooms','rooms','bathrooms','id', 'product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
-            [['code', 'created_at', 'updated_at','name_seller','address_seller','mobile_seller','email_seller'], 'safe'],
+            [['code', 'created_at', 'updated_at','name_seller','address_seller','mobile_seller','email_seller','portion_id','land_id'], 'safe'],
         ];
     }
 
@@ -81,6 +81,8 @@ class ProductMediumSearch extends ProductMedium
             'address_seller'=> $this->adress_seller,
             'mobile_seller'=>$this->mobile_seller,
             'email_seller'=>$this->email_seller,
+            'portion_id' => $this->project_id,
+            'land_id' => $this->land_id
         ]);
 
         $query->andFilterWhere(['like', 'code', $this->code]);

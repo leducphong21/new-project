@@ -64,7 +64,7 @@ class ProductSale extends \yii\db\ActiveRecord
     {
         return [
             [['type','floors','bedrooms','rooms','bathrooms','product_category_id', 'project_id', 'county_id', 'city_id', 'price', 'acreage', 'total_price', 'status_description', 'status', 'deleted', 'created_by', 'updated_by'], 'integer'],
-            [['created_at', 'updated_at','address','description'], 'safe'],
+            [['created_at', 'updated_at','address','description','portion_id','land_id'], 'safe'],
             [['code'], 'string', 'max' => 8],
             [['name'], 'string', 'max' => 64],
             [['type','product_category_id','county_id','city_id','price','acreage','name'],'required' ]
@@ -100,7 +100,9 @@ class ProductSale extends \yii\db\ActiveRecord
             'rooms' => 'Số phòng',
             'bedrooms' => 'Số phòng ngủ',
             'bathrooms' => 'Số phòng vệ sinh',
-            'floors' => 'Số tầng'
+            'floors' => 'Số tầng',
+            'portion_id' => "Lô đất",
+            'land_id' => "Thửa đất"
         ];
     }
 
@@ -136,5 +138,12 @@ class ProductSale extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ProductCategory::className(), ['id' => 'product_category_id']);
     }
-
+    public function getPortion()
+    {
+        return $this->hasOne(Portion::className(), ['id' => 'portion_id']);
+    }
+    public function getLand()
+    {
+        return $this->hasOne(Land::className(), ['id' => 'land_id']);
+    }
 }

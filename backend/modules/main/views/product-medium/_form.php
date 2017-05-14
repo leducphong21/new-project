@@ -6,6 +6,24 @@ use kartik\select2\Select2;
 use yii\web\JsExpression;
 use yii\helpers\Url;
 use common\models\project\Seller;
+use kartik\depdrop\DepDrop;
+use common\helpers\project\ProjectHelper;
+use common\helpers\project\CityHelper;
+
+$modelPortion = [];
+if($model->project){
+    $modelPortion = ProjectHelper::getPortion($model->project->id);
+}
+
+$modelLand = [];
+if($model->portion){
+    $modelLand = ProjectHelper::getLand($model->portion->id);
+}
+
+$modelCounty = [];
+if($model->county){
+    $modelCounty = CityHelper::getCounty($model->county->id);
+}
 ?>
 
 <div class="tabbable">
@@ -58,27 +76,80 @@ use common\models\project\Seller;
                     </div>
                     <div class="col-sm-3">
                         <span class="input-icon icon-right">
-                         <label>Dự án</label>
-                            <?php
-                            echo Select2::widget([
-                                'model' => $model,
-                                'attribute' => 'project_id',
-                                'data' => $modelProject,
-                                'theme' => Select2::THEME_BOOTSTRAP,
-                                'options' => [
-                                    'class' => 'form-control input-sm',
-                                    'placeholder' => 'Chọn dự án'
-                                ],
-                                'size' => Select2::SMALL,
-                                'pluginOptions' => [
-                                    'tags' => false,
-                                    'tokenSeparators' => [',', ' '],
-                                    'maximumInputLength' => 20
-                                ],
-                            ]);
-                            ?>
-                    </span>
+                            <label>Dự án</label>
+
+                                    <?php
+                                    echo Select2::widget([
+                                        'model' => $model,
+                                        'attribute' => 'project_id',
+                                        'data' => $modelProject,
+                                        'theme' => Select2::THEME_BOOTSTRAP,
+                                        'options' => [
+                                            'id' => 'project_id',
+                                            'class' => 'form-control input-sm',
+                                            'prompt' =>'Chọn dự án',
+                                        ],
+                                        'size' => Select2::SMALL,
+                                        'pluginOptions' => [
+                                            'tags' => false,
+                                            'tokenSeparators' => [',', ' '],
+                                            'maximumInputLength' => 20
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
                     </div>
+                    <div class="col-sm-3">
+                            <label>Lô đất</label>
+                            <span class="input-icon icon-right">
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'portion_id',
+                                        'options'=> [
+                                            'id'=>'portion_id',
+                                            'class' => 'form-control input-sm'
+                                        ],
+                                        'data'=> $modelPortion,
+                                        'pluginOptions'=>[
+                                            'depends'=>['project_id'],
+                                            'placeholder'=> 'Chọn lô đất ...',
+                                            'url'=>Url::to(['/main/portion/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
+                        </div>
+                    </div>
+
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>Thửa đất</label>
+                        <span class="input-icon icon-right">
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'land_id',
+                                        'options'=> [
+                                            'id'=>'land_id',
+                                            'class' => 'form-control input-sm'
+                                        ],
+                                        'data'=> $modelLand,
+                                        'pluginOptions'=>[
+                                            'depends'=>['portion_id'],
+                                            'placeholder'=> 'Chọn thửa đất ...',
+                                            'url'=>Url::to(['/main/land/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
+                    </div>
+
                     <div class="col-sm-3">
                          <span class="input-icon icon-right">
                          <label>Chọn tỉnh thành</label>
@@ -90,7 +161,8 @@ use common\models\project\Seller;
                                  'theme' => Select2::THEME_BOOTSTRAP,
                                  'options' => [
                                      'class' => 'form-control input-sm',
-                                     'placeholder' => 'Chọn tỉnh thành'
+                                     'placeholder' => 'Chọn tỉnh thành',
+                                     'id'=>'city_id'
                                  ],
                                  'size' => Select2::SMALL,
                                  'pluginOptions' => [
@@ -103,31 +175,27 @@ use common\models\project\Seller;
                     </span>
                     </div>
 
-                </div>
-                <br>
-                <div class="row">
                     <div class="col-sm-3">
-                         <span class="input-icon icon-right">
-                         <label>Chọn quận huyện</label>
-                             <?php
-                             echo Select2::widget([
-                                 'model' => $model,
-                                 'attribute' => 'county_id',
-                                 'data' => $modelCounty,
-                                 'theme' => Select2::THEME_BOOTSTRAP,
-                                 'options' => [
-                                     'class' => 'form-control input-sm',
-                                     'placeholder' => 'Chọn quận huyện'
-                                 ],
-                                 'size' => Select2::SMALL,
-                                 'pluginOptions' => [
-                                     'tags' => false,
-                                     'tokenSeparators' => [',', ' '],
-                                     'maximumInputLength' => 20
-                                 ],
-                             ]);
-                             ?>
-                    </span>
+                        <label>Quận huyện</label>
+                        <span class="input-icon icon-right">
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'county_id',
+                                        'options'=> [
+                                            'id'=>'county_id',
+                                            'class' => 'form-control input-sm'
+                                        ],
+                                        'data'=> $modelCounty,
+                                        'pluginOptions'=>[
+                                            'depends'=>['city_id'],
+                                            'placeholder'=> 'Chọn quận huyện ...',
+                                            'url'=>Url::to(['/extra/county/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group ">Giá mết vuông
@@ -136,6 +204,12 @@ use common\models\project\Seller;
                          </span>
                         </div>
                     </div>
+
+
+
+                </div>
+                <br>
+                <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group ">Diện tích
                             <span class="input-icon icon-right">
@@ -144,13 +218,12 @@ use common\models\project\Seller;
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="form-group ">Lãi
+                        <div class="form-group ">Lãi mỗi giới
                             <span class="input-icon icon-right">
                              <?=Html::activeTextInput($model, 'interest', ['class' => 'form-control', 'style' =>'width: 100%;'])?>
                          </span>
                         </div>
                     </div>
-
                 </div>
                 <br>
                 <h1>Thông tin chủ sở hữu</h1>

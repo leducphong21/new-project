@@ -1,10 +1,17 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
+use kartik\depdrop\DepDrop;
+use common\helpers\project\CityHelper;
 
 
+$modelCounty = [];
+if($model->county){
+    $modelCounty = CityHelper::getCounty($model->county->id);
+}
 ?>
 <div class="tabbable">
     <div class="widget-body">
@@ -80,7 +87,8 @@ use kartik\select2\Select2;
                                  'theme' => Select2::THEME_BOOTSTRAP,
                                  'options' => [
                                      'class' => 'form-control input-sm',
-                                     'placeholder' => 'Chọn tỉnh thành'
+                                     'placeholder' => 'Chọn tỉnh thành',
+                                     'id'=>'city_id'
                                  ],
                                  'size' => Select2::SMALL,
                                  'pluginOptions' => [
@@ -92,28 +100,27 @@ use kartik\select2\Select2;
                              ?>
                     </span>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                        <label>Quận huyện</label>
                         <span class="input-icon icon-right">
-                         <label>Quận/Huyện</label>
-                            <?php
-                            echo Select2::widget([
-                                'model' => $model,
-                                'attribute' => 'county_id',
-                                'data' => $modelCounty,
-                                'theme' => Select2::THEME_BOOTSTRAP,
-                                'options' => [
-                                    'class' => 'form-control input-sm',
-                                    'placeholder' => 'Chọn quận huyện'
-                                ],
-                                'size' => Select2::SMALL,
-                                'pluginOptions' => [
-                                    'tags' => false,
-                                    'tokenSeparators' => [',', ' '],
-                                    'maximumInputLength' => 20
-                                ],
-                            ]);
-                            ?>
-                    </span>
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'county_id',
+                                        'options'=> [
+                                            'id'=>'county_id',
+                                            'class' => 'form-control input-sm',
+                                        ],
+                                        'data'=> $modelCounty,
+                                        'pluginOptions'=>[
+                                            'depends'=>['city_id'],
+                                            'placeholder'=> 'Chọn quận huyện ...',
+                                            'url'=>Url::to(['/extra/county/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
                     </div>
 
                 </div>

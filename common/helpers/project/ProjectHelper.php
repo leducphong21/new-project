@@ -27,5 +27,15 @@ class ProjectHelper extends Inflector
         return $data;
     }
 
+    public static function getLand($portion_id)
+    {
+        $dataModel = Portion::find()
+            ->where(['portion_id' => $portion_id])
+            ->orderBy('id DESC')
+            ->asArray()->all();
+        $data = ArrayHelper::map($dataModel, 'id', 'name');
+        return $data;
+    }
+
 
 }

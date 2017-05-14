@@ -31,12 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'summary' => '',
                             'options' => [
                                 'id' => 'w1',
+                                'style'=>['width'=> '2000px']
                             ],
                             'columns' => [
                                 ['class' => 'yii\grid\CheckboxColumn'],
                                 [
                                     'attribute' => 'name',
-                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'contentOptions' => ['style' => 'width:250px;'],
                                     'format' => 'raw',
                                     'value' => function ($model) {
                                         return Html::a($model->name, ['update', 'id' =>$model->id], ['class' =>'alink']);
@@ -48,9 +49,30 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ],
                                 [
                                     'attribute' => 'product_category_id',
-                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'contentOptions' => ['style' => 'width:200px;'],
                                     'value' => function ($model) {
                                         return $model->productCategory? $model->productCategory->name : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'project_id',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'value' => function ($model) {
+                                        return $model->project? $model->project->name : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'portion_id',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'value' => function ($model) {
+                                        return $model->portion? $model->portion->name : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'land_id',
+                                    'contentOptions' => ['style' => 'width:150px;'],
+                                    'value' => function ($model) {
+                                        return $model->land? $model->land->name : '';
                                     },
                                 ],
                                 [
@@ -71,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ],
                                 [
                                     'attribute' => 'name_seller',
-                                    'contentOptions' => ['style' => 'width:90px;'],
+                                    'contentOptions' => ['style' => 'width:200px;'],
                                     'value'=>function($model){
                                         return $model->seller? $model->seller->name : '';
                                     }
@@ -111,7 +133,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 [
                                     'class' => 'backend\grid\ActionColumn',
                                     'template'=>'{view}{my_button}{update} {delete}',
-                                    'contentOptions' => ['style' => 'width:250px;text-align:center'],
+                                    'contentOptions' => ['style' => 'width:300px;text-align:center'],
                                     'buttons' => [
                                         'view' => function ($url, $model, $key) {
                                             return Html::button('<span class="glyphicon glyphicon-eye-open"></span> Chi tiết', [
