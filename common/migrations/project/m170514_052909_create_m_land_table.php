@@ -18,6 +18,7 @@ class m170514_052909_create_m_land_table extends Migration
             'code'=>$this->string(8),
             'project_id'=>$this->integer(),
             'portion_id'=>$this->integer(),
+            'deleted' => $this->smallInteger(8)->defaultValue(1),
             'created_by' => $this->integer(),
             'created_at' => $this->date(),
             'updated_by' => $this->integer(),
