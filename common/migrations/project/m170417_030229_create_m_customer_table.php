@@ -24,7 +24,7 @@ class m170417_030229_create_m_customer_table extends Migration
             'email' => $this->string(64),
             'job' => $this->string(64),
             'tax_code' => $this->string(16),
-            'deleted' => $this->smallInteger(2),
+            'deleted' => $this->smallInteger(2)->defaultValue(1),
             'created_by' => $this->integer(),
             'created_at' => $this->date(),
             'updated_by' => $this->integer(),

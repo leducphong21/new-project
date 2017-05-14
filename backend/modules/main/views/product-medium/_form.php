@@ -3,8 +3,11 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
-
+use yii\web\JsExpression;
+use yii\helpers\Url;
+use common\models\project\Seller;
 ?>
+
 <div class="tabbable">
     <div class="widget-body">
         <div class="table-toolbar">
@@ -156,30 +159,78 @@ use kartik\select2\Select2;
                         <div class="form-group">
                             <label>Chủ sở hữu</label>
                             <span class="input-icon icon-right">
-                                        <div class="input-group input-group-sm group-select_car_no select2-bootstrap-append"><select id="select_car_no" class="form-control input-sm select2-hidden-accessible" name="CarTicket[id]" data-s2-options="s2options_6cc131ae" data-krajee-select2="select2_1b68687e" style="display:none" tabindex="-1" aria-hidden="true">
-<option value="">Chọn chủ sở hữu ...</option>
-<option value=""></option>
-</select><span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-select_car_no-container"><span class="select2-selection__rendered" id="select2-select_car_no-container"><span class="select2-selection__placeholder">Chọn biển số xe ...</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span><span class="input-group-addon"><i id="btnAddNewCar" class="fa fa-plus blue imouse" title="Thêm mới xe"></i></span></div>                                     </span>
+                                        <?php
+                                        $urlCarJson = Url::to(['/customer/seller/json-list']);
+                                        // Get the initial city description
+                                        $carDesc = empty($modelSeller->name) ? '' : Seller::findOne($modelSeller->name);
+                                            if($modelSeller->name){
+                                                $carDesc = $modelSeller->name;
+                                            }
+
+                                        echo Select2::widget([
+                                            'model' => $model,
+                                            'attribute' => 'name_seller',
+                                            //'name' => 'car_id',
+                                            //'data' => $carsNo,
+                                            //'value' => $model->car_id,
+                                            'initValueText' => $carDesc,
+                                            'theme' => Select2::THEME_BOOTSTRAP,
+                                            'options' => [
+                                                'placeholder' => 'Chọn chủ sở hữu ...',
+                                                'class' => 'form-control input-sm',
+                                                'id' => 'select_seller'
+                                            ],
+                                            'size' => Select2::SMALL,
+                                            'addon' => [
+                                                'append' => [
+                                                    'content' => '<i id="btnAddNewCar"  class="fa fa-plus blue imouse"  data-toggle="modal" data-target="#myModal" title="Thêm mới chủ sở hữu"></i>',
+                                                    'asButton' => false
+                                                ]
+                                            ],
+                                            'pluginOptions' => [
+                                                'allowClear' => true,
+                                                'tags' => true,
+                                                'tokenSeparators' => [','],
+                                                'maximumInputLength' => 15,
+                                                //'minimumInputLength' => 2,
+                                                'language' => [
+                                                    'errorLoading' => new JsExpression("function () { return 'Đang tìm kiếm...'; }"),
+                                                ],
+                                                'ajax' => [
+                                                    'url' => $urlCarJson,
+                                                    'dataType' => 'json',
+                                                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                                                ],
+                                                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                                                'templateSelection' => new JsExpression('function (city) { return city.text; }'),
+                                            ],
+                                            'pluginEvents' => [
+                                                "change" => "function() { console.log('change'); }",
+                                                "select2:unselect" => "function() { console.log('unselect'); }"
+                                            ]
+                                        ]);
+                                        ?>
+                                     </span>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group ">Địa chỉ
                             <span class="input-icon icon-right">
-                             <input class="form-control" disabled="disabled" style="width: 100%" />
+                             <?=Html::activeTextInput($model, 'address_seller', ['class' => 'form-control', 'id' =>"data_address", 'style' =>'width: 100%;'])?>
                          </span>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group ">Điện thoại
-                            <span class="input-icon icon-right">
-                             <input class="form-control" disabled="disabled" style="width: 100%" />
+                         <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'mobile_seller', ['class' => 'form-control', 'id' =>"data_mobile", 'style' =>'width: 100%;'])?>
                          </span>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group ">Email
                             <span class="input-icon icon-right">
-                             <input class="form-control" disabled="disabled" style="width: 100%" />
+                             <?=Html::activeTextInput($model, 'email_seller', ['class' => 'form-control', 'id' =>"data_email", 'style' =>'width: 100%;'])?>
                          </span>
                         </div>
                     </div>
@@ -254,3 +305,127 @@ use kartik\select2\Select2;
         </div>
     </div>
 </div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 70%">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thông tin chi tiết sản phẩm</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        Tên chủ sở hữu<br>
+                        <input id="name" />
+                    </div>
+                    <div class="col-lg-4">
+                        Giới tính<br>
+                        <select id="gender">
+                            <option>Chọn giới tính...</option>
+                            <option value="1">Nam</option>
+                            <option value="2">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4">
+                        Ngày sinh<br>
+                        <input type="date" id="birthday"/>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        Địa chỉ<br>
+                        <input id="address" />
+                    </div>
+                    <div class="col-lg-4">
+                        Điện thoại<br>
+                        <input id="mobile" />
+                    </div>
+                    <div class="col-lg-4">
+                        Thư điện tử<br>
+                        <input id="email" />
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        Nghề nghiệp<br>
+                        <input id="job" />
+                    </div>
+                    <div class="col-lg-4">
+                        Mã số thuế<br>
+                        <input id="tax_code" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="save" class="btn btn-success" data-dismiss="modal">Lưu lại</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<?php
+$app_js = <<<JS
+
+$('#save').click(function(){
+    var name = $('#name').val();
+    var gender = $('#gender').val();
+    var birthday = $('#birtday').val();
+    var address = $('#address').val();
+    var mobile = $('#mobile').val();
+    var email = $('#email').val();
+    var job = $('#job').val();
+    var tax_code = $('#tax_code').val();
+    var dataSeller = new Array(name,gender,birthday,address,mobile,email,job,tax_code);
+    console.log(dataSeller);
+                   $.ajax({
+                      url: '/customer/seller/ajax-save',
+                      data: {
+                         name:name,
+                         gender:gender,
+                         birthday:birthday,
+                         address:address,
+                         mobile:mobile,
+                         email:email,
+                         job:job,
+                         tax_code:tax_code
+                      },
+                      error: function() {
+                         alert('Có lỗi xảy ra');
+                      },
+                      success: function() {
+                         alert('Thanh cong');
+                      },
+                      type: 'POST'
+                   });
+});
+
+$('#select_seller').on('change',function() {
+    var idSeller = $('#select_seller').val();
+    console.log(idSeller);
+    $.ajax({
+        url: '/customer/seller/ajax-info',
+        type: 'GET',
+        data:{
+            id:idSeller
+        },
+        success: function(result){
+            $('#data_address').val(result.address);
+            $('#data_mobile').val(result.phone_number);
+            $('#data_email').val(result.email);
+        }
+    });
+    
+
+})
+JS;
+$this->registerJs($app_js);
+
+?>

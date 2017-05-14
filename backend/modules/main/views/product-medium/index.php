@@ -70,6 +70,25 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'contentOptions' => ['style' => 'width:90px;'],
                                 ],
                                 [
+                                    'attribute' => 'name_seller',
+                                    'contentOptions' => ['style' => 'width:90px;'],
+                                    'value'=>function($model){
+                                        return $model->seller? $model->seller->name : '';
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'address_seller',
+                                    'contentOptions' => ['style' => 'width:90px;'],
+                                ],
+                                [
+                                    'attribute' => 'mobile_seller',
+                                    'contentOptions' => ['style' => 'width:90px;'],
+                                ],
+                                [
+                                    'attribute' => 'email_seller',
+                                    'contentOptions' => ['style' => 'width:90px;'],
+                                ],
+                                [
                                     'attribute' => 'status',
                                     'contentOptions' => ['style' => 'width:150px;'],
                                     'value' => function ($model) {

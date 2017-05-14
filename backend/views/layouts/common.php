@@ -20,7 +20,7 @@ $bundle = ProjectAsset::register($this);
                 <div class="navbar-header pull-left">
                     <a href="<?=Url::to(['/'])?>" class="navbar-brand">
                         <small>
-                            <img src="<?=$this->assetManager->getAssetUrl($bundle, 'img/logo.jpg')?>" />
+                            <img src="<?=$this->assetManager->getAssetUrl($bundle, 'img/logo.png')?>" />
                         </small>
                     </a>
                 </div>
@@ -163,7 +163,27 @@ $bundle = ProjectAsset::register($this);
                                 ],
                             ]
                         ],
-
+                        [
+                            'label'=> 'Dự án',
+                            'url' => '#',
+                            'is_toggle' => 1,
+                            'icon'=>'<i class="menu-icon fa fa-th"></i>',
+                            //'options'=>['class'=>'open'],
+                            'items'=>[
+                                [
+                                    'label'=> 'Dự án',
+                                    'url'=>['/main/project'],
+                                ],
+                                [
+                                    'label'=> 'Lô đất',
+                                    'url'=>['/main/portion'],
+                                ],
+                                [
+                                    'label'=> 'Thửa đất',
+                                    'url'=>['/main/land'],
+                                ],
+                            ]
+                        ],
                         [
                             'label'=> 'Khách hàng',
                             'url' => '#',
@@ -244,6 +264,7 @@ $bundle = ProjectAsset::register($this);
                             'url' => '#',
                             'is_toggle' => 1,
                             'icon'=>'<i class="menu-icon fa fa-th"></i>',
+                            'visible' => Yii::$app->user->can('administrator'),
                             //'options'=>['class'=>'open'],
                             'items'=>[
                                 [
@@ -294,11 +315,6 @@ $bundle = ProjectAsset::register($this);
                                             'url' => '#',
                                         ],
                                     ]
-                                ],
-                                [
-                                    'label'=> 'Dự án',
-                                    'icon'=>'<i class="menu-icon  glyphicon glyphicon-stats"></i>',
-                                    'url'=>['/main/project'],
                                 ],
                                 [
                                     'label'=> 'Nhân viên',

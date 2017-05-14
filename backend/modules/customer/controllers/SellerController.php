@@ -114,6 +114,33 @@ class SellerController extends Controller
         ]);
     }
 
+    public function actionAjaxSave()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model = new Seller();
+
+            $model->name = isset($_POST["name"]) ? $_POST['name'] : "";
+            $model->gender = isset($_POST["gender"]) ? $_POST['gender'] : "";
+            $date = isset($_POST["birthday"]) ? $_POST['birthday'] : "";
+            $date = date('Y-m-d', strtotime(str_replace('/', '-', $date)));
+            $model->birth_day=$date;
+            $model->address = isset($_POST["address"]) ? $_POST['address'] : "";
+            $model->phone_number = isset($_POST["mobile"]) ? $_POST['mobile'] : "";
+            $model->email = isset($_POST["email"]) ? $_POST['email'] : "";
+            $model->job = isset($_POST["job"]) ? $_POST['job'] : "";
+            $model->tax_code = isset($_POST["tex_code"]) ? $_POST['tax_code'] : "";
+
+            $maxId = Seller::find()->orderBy('id DESC')->one();
+            $nextID = isset($maxId) ? $maxId->id : 0;
+            $model->code = 'NB00' .($nextID + 1);
+            //Buyer
+            $model->type=2;
+            $model->save();
+
+        return "aaaa";
+    }
+
+
     public function actionAjaxDelete()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -172,5 +199,40 @@ class SellerController extends Controller
         } else {
             throw new NotFoundHttpException('The Seller item does not exist.');
         }
+    }
+
+    public function actionAjaxInfo()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $dataGet = $_GET;
+        $dataId = isset($dataGet['id']) ? $dataGet['id'] : [];
+        if (isset($dataId)) {
+            $product = [];
+            $dataSeller = [];
+            $dataSeller = Seller::find()->where(['id' => $dataId])->one();
+            return $dataSeller;
+        }
+
+    }
+
+    public function actionJsonList($q = null, $id = null) {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = ['results' => ['id' => '', 'text' => '']];
+        if (!is_null($q)) {
+            $query = new Query;
+            $query->select('id, name AS text')
+                ->from('m_customer')
+                ->andWhere(['like', 'name', $q])
+                ->andWhere(['m_customer.deleted' => 1])
+                ->andWhere(['m_customer.type' => 2])
+                ->limit(20);
+            $command = $query->createCommand();
+            $data = $command->queryAll();
+            $out['results'] = array_values($data);
+        }
+        elseif ($id > 0) {
+            $out['results'] = ['id' => $id, 'text' => Seller::find($id)->name];
+        }
+        return $out;
     }
 }

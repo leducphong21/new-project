@@ -20,6 +20,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\response;
 
 
+
 /**
  * ProductController implements the CRUD actions for Product model.
  */
@@ -71,6 +72,7 @@ class ProductMediumController extends Controller
      */
     public function actionCreate()
     {
+        $modelSeller = new Seller();
         $modelImage = new UploadForm();
         $model = new ProductMedium();
         $maxId = ProductMedium::find()->orderBy('id DESC')->one();
@@ -112,6 +114,7 @@ class ProductMediumController extends Controller
             'modelProject' => ArrayHelper::map($modelProject, 'id', 'name'),
             'modelProductCategory' => ArrayHelper::map($modelProductCategory, 'id', 'name'),
             'modelImage' => $modelImage,
+            'modelSeller' => $modelSeller,
         ]);
     }
 

@@ -18,5 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
     'modelProject' => $modelProject,
     'modelProductCategory' => $modelProductCategory,
     'modelImage' => $modelImage,
+    'modelSeller' => $modelSeller,
 ]) ?>
 

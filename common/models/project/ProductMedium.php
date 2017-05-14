@@ -4,6 +4,7 @@ namespace common\models\project;
 
 use backend\assets_b\Project;
 use common\models\User;
+use common\models\project\Seller;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -67,7 +68,7 @@ class ProductMedium extends \yii\db\ActiveRecord
             [['created_at', 'updated_at','address','description'], 'safe'],
             [['code'], 'string', 'max' => 8],
             [['name'], 'string', 'max' => 64],
-            [['type','product_category_id','county_id','city_id','price','acreage','name'],'required' ]
+            [['type','product_category_id','county_id','city_id','price','acreage','name','name_seller','address_seller','mobile_seller','email_seller'],'required' ]
         ];
     }
 
@@ -101,7 +102,12 @@ class ProductMedium extends \yii\db\ActiveRecord
             'rooms' => 'Số phòng',
             'bedrooms' => 'Số phòng ngủ',
             'bathrooms' => 'Số phòng vệ sinh',
-            'floors' => 'Số tầng'
+            'floors' => 'Số tầng',
+            'name_seller' => 'Chủ sở hữu',
+            'address_seller' => "Địa chỉ",
+            'mobile_seller' => 'Điện thoại',
+            'email_seller'=>'Thư điện tử',
+
         ];
     }
 
@@ -137,5 +143,8 @@ class ProductMedium extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ProductCategory::className(), ['id' => 'product_category_id']);
     }
-
+    public function getSeller()
+    {
+        return $this->hasOne(Seller::className(), ['id' => 'name_seller']);
+    }
 }
