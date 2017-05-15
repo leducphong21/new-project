@@ -2,7 +2,7 @@
 
 namespace common\helpers\project;
 
-
+use common\models\project\Land;
 use common\models\project\Portion;
 use yii\helpers\Inflector;
 use yii\helpers\ArrayHelper;
@@ -29,7 +29,7 @@ class ProjectHelper extends Inflector
 
     public static function getLand($portion_id)
     {
-        $dataModel = Portion::find()
+        $dataModel = Land::find()
             ->where(['portion_id' => $portion_id])
             ->orderBy('id DESC')
             ->asArray()->all();
