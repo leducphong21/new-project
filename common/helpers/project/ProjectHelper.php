@@ -2,6 +2,7 @@
 
 namespace common\helpers\project;
 
+use common\models\project\ModelProject;
 use common\models\project\Land;
 use common\models\project\Portion;
 use yii\helpers\Inflector;
@@ -17,6 +18,16 @@ use yii\helpers\ArrayHelper;
  */
 class ProjectHelper extends Inflector
 {
+    public static function getProject($county_id)
+    {
+        $dataModel = ModelProject::find()
+            ->where(['county_id' => $county_id])
+            ->orderBy('id DESC')
+            ->asArray()->all();
+        $data = ArrayHelper::map($dataModel, 'id', 'name');
+        return $data;
+    }
+
     public static function getPortion($project_id)
     {
         $dataModel = Portion::find()

@@ -13,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\response;
+use yii\helpers\Json;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -180,5 +181,30 @@ class ProjectController extends Controller
         } else {
             throw new NotFoundHttpException('The Project item does not exist.');
         }
+    }
+
+    public function actionList()
+    {
+        if (isset($_POST['depdrop_parents'])) {
+            $out = [];
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $id_county = $parents[0];
+                $out = ModelProject::find()
+                    ->where(['county_id' => $id_county])
+                    ->orderBy('id desc')
+                    ->asArray()->all();
+                $data = [];
+                foreach ($out as $item) {
+                    $data_model = [];
+                    $data_model['id'] = intval($item['id']);
+                    $data_model['name'] = $item['name'];
+                    $data[] = $data_model;
+                }
+                echo Json::encode(['output' => $data, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
     }
 }

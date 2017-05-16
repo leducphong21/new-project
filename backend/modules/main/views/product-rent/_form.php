@@ -22,6 +22,11 @@ $modelCounty = [];
 if($model->county){
     $modelCounty = CityHelper::getCounty($model->county->id);
 }
+
+$modelProject = [];
+if($model->project){
+    $modelProject = ProjectHelper::getProject($model->project->id);
+}
 ?>
 <div class="tabbable">
     <div class="widget-body">
@@ -72,79 +77,6 @@ if($model->county){
                     </span>
                     </div>
                     <div class="col-sm-3">
-                        <span class="input-icon icon-right">
-                         <label>Dự án</label>
-                            <?php
-                            echo Select2::widget([
-                                'model' => $model,
-                                'attribute' => 'project_id',
-                                'data' => $modelProject,
-                                'theme' => Select2::THEME_BOOTSTRAP,
-                                'options' => [
-                                    'class' => 'form-control input-sm',
-                                    'placeholder' => 'Chọn dự án',
-                                    'id'=>'project_id'
-                                ],
-                                'size' => Select2::SMALL,
-                                'pluginOptions' => [
-                                    'tags' => false,
-                                    'tokenSeparators' => [',', ' '],
-                                    'maximumInputLength' => 20
-                                ],
-                            ]);
-                            ?>
-                    </span>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <label>Lô đất</label>
-                        <span class="input-icon icon-right">
-                                    <?php
-                                    echo DepDrop::widget([
-                                        'type'=>DepDrop::TYPE_SELECT2,
-                                        'model' => $model,
-                                        'attribute' => 'portion_id',
-                                        'options'=> [
-                                            'id'=>'portion_id',
-                                            'class' => 'form-control input-sm'
-                                        ],
-                                        'data'=> $modelPortion,
-                                        'pluginOptions'=>[
-                                            'depends'=>['project_id'],
-                                            'placeholder'=> 'Chọn lô đất ...',
-                                            'url'=>Url::to(['/main/portion/list'])
-                                        ],
-                                    ]);
-                                    ?>
-                                </span>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <label>Lô đất</label>
-                        <span class="input-icon icon-right">
-                                    <?php
-                                    echo DepDrop::widget([
-                                        'type'=>DepDrop::TYPE_SELECT2,
-                                        'model' => $model,
-                                        'attribute' => 'land_id',
-                                        'options'=> [
-                                            'id'=>'land_id',
-                                            'class' => 'form-control input-sm'
-                                        ],
-                                        'data'=> $modelLand,
-                                        'pluginOptions'=>[
-                                            'depends'=>['portion_id'],
-                                            'placeholder'=> 'Chọn thửa đất ...',
-                                            'url'=>Url::to(['/main/land/list'])
-                                        ],
-                                    ]);
-                                    ?>
-                                </span>
-                    </div>
-
-                    <div class="col-sm-3">
                          <span class="input-icon icon-right">
                          <label>Chọn tỉnh thành</label>
                              <?php
@@ -190,6 +122,79 @@ if($model->county){
                                     ?>
                                 </span>
                     </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>Dự án</label>
+                        <span class="input-icon icon-right">
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'project_id',
+                                        'options'=> [
+                                            'id'=>'project_id',
+                                            'placeholder' => 'Chọn dự an',
+                                            'class' => 'form-control input-sm',
+                                        ],
+                                        'data'=> $modelProject,
+                                        'pluginOptions'=>[
+                                            'depends'=>['county_id'],
+                                            'placeholder'=> 'Chọn dự an...',
+                                            'url'=>Url::to(['/main/project/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label>Lô đất</label>
+                        <span class="input-icon icon-right">
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'portion_id',
+                                        'options'=> [
+                                            'id'=>'portion_id',
+                                            'class' => 'form-control input-sm'
+                                        ],
+                                        'data'=> $modelPortion,
+                                        'pluginOptions'=>[
+                                            'depends'=>['project_id'],
+                                            'placeholder'=> 'Chọn lô đất ...',
+                                            'url'=>Url::to(['/main/portion/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Thửa đất</label>
+                        <span class="input-icon icon-right">
+                                    <?php
+                                    echo DepDrop::widget([
+                                        'type'=>DepDrop::TYPE_SELECT2,
+                                        'model' => $model,
+                                        'attribute' => 'land_id',
+                                        'options'=> [
+                                            'id'=>'land_id',
+                                            'class' => 'form-control input-sm'
+                                        ],
+                                        'data'=> $modelLand,
+                                        'pluginOptions'=>[
+                                            'depends'=>['portion_id'],
+                                            'placeholder'=> 'Chọn thửa đất ...',
+                                            'url'=>Url::to(['/main/land/list'])
+                                        ],
+                                    ]);
+                                    ?>
+                                </span>
+                    </div>
+
+
                     <div class="col-sm-3">
                         <div class="form-group ">Diện tích
                             <span class="input-icon icon-right">

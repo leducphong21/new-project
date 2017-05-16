@@ -55,27 +55,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                     },
                                 ],
                                 [
-                                    'attribute' => 'project_id',
-                                    'contentOptions' => ['style' => 'width:150px;'],
-                                    'value' => function ($model) {
-                                        return $model->project? $model->project->name : '';
-                                    },
-                                ],
-                                [
-                                    'attribute' => 'portion_id',
-                                    'contentOptions' => ['style' => 'width:150px;'],
-                                    'value' => function ($model) {
-                                        return $model->portion? $model->portion->name : '';
-                                    },
-                                ],
-                                [
-                                    'attribute' => 'land_id',
-                                    'contentOptions' => ['style' => 'width:150px;'],
-                                    'value' => function ($model) {
-                                        return $model->land? $model->land->name : '';
-                                    },
-                                ],
-                                [
                                     'attribute' => 'price',
                                     'contentOptions' => ['style' => 'width:90px;'],
                                 ],
