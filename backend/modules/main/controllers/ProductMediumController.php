@@ -134,6 +134,7 @@ class ProductMediumController extends Controller
         $modelCounty = County::find()->all();
         $modelCity = City::find()->all();
 
+        $modelSeller = new Seller();
         if ($model->load(Yii::$app->request->post())) {
             $model->total_price = $model->price * $model->acreage;
             if ($model->save()) {
@@ -151,6 +152,7 @@ class ProductMediumController extends Controller
             'modelProject' => ArrayHelper::map($modelProject, 'id', 'name'),
             'modelProductCategory' => ArrayHelper::map($modelProductCategory, 'id', 'name'),
             'modelImage' => $modelImage,
+            'modelSeller' => $modelSeller
         ]);
     }
 

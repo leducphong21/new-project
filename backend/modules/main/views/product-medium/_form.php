@@ -386,7 +386,7 @@ if($model->county){
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Thông tin chi tiết sản phẩm</h4>
+                <h4 class="modal-title">Thông tin chủ sở hữu</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
