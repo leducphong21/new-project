@@ -102,6 +102,9 @@ $config = [
         'manager' => [
             'class' => 'backend\modules\manager\Module',
         ],
+        'contract' => [
+            'class' => 'backend\modules\contract\Module',
+        ],
     ],
     'as globalAccess' => [
         'class' => '\common\behaviors\GlobalAccessBehavior',

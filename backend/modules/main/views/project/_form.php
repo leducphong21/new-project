@@ -100,7 +100,7 @@ if($model->county){
                              ?>
                     </span>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label>Quận huyện</label>
                         <span class="input-icon icon-right">
                                     <?php

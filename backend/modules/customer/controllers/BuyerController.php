@@ -2,6 +2,7 @@
 
 namespace backend\modules\customer\controllers;
 
+use yii\db\Query;
 use Yii;
 use common\models\project\Buyer;
 use common\models\project\BuyerSearch;
@@ -174,5 +175,52 @@ class BuyerController extends Controller
         } else {
             throw new NotFoundHttpException('The Customer item does not exist.');
         }
+    }
+
+    public function actionJsonList($q = null, $id = null) {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = ['results' => ['id' => '', 'text' => '']];
+        if (!is_null($q)) {
+            $query = new Query;
+            $query->select('id, name AS text')
+                ->from('m_customer')
+                ->andWhere(['like', 'name', $q])
+                ->andWhere(['m_customer.deleted' => 1])
+                ->andWhere(['m_customer.type' => 1])
+                ->limit(20);
+            $command = $query->createCommand();
+            $data = $command->queryAll();
+            $out['results'] = array_values($data);
+        }
+        elseif ($id > 0) {
+            $out['results'] = ['id' => $id, 'text' => Buyer::find($id)->name];
+        }
+        return $out;
+    }
+
+    public function actionAjaxSave()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model = new Buyer();
+
+        $model->name = isset($_POST["name"]) ? $_POST['name'] : "";
+        $model->gender = isset($_POST["gender"]) ? $_POST['gender'] : "";
+        $date = isset($_POST["birthday"]) ? $_POST['birthday'] : "";
+        $date = date('Y-m-d', strtotime(str_replace('/', '-', $date)));
+        $model->birth_day=$date;
+        $model->address = isset($_POST["address"]) ? $_POST['address'] : "";
+        $model->phone_number = isset($_POST["mobile"]) ? $_POST['mobile'] : "";
+        $model->email = isset($_POST["email"]) ? $_POST['email'] : "";
+        $model->job = isset($_POST["job"]) ? $_POST['job'] : "";
+        $model->tax_code = isset($_POST["tex_code"]) ? $_POST['tax_code'] : "";
+
+        $maxId = Buyer::find()->orderBy('id DESC')->one();
+        $nextID = isset($maxId) ? $maxId->id : 0;
+        $model->code = 'NM00' .($nextID + 1);
+        //Buyer
+        $model->type=1;
+        $model->save();
+
+        return "aaaa";
     }
 }

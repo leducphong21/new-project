@@ -1,9 +1,9 @@
 <?php
 
 namespace backend\modules\main\controllers;
+
 use common\models\project\UploadForm;
 use yii\web\UploadedFile;
-
 use backend\assets_b\Project;
 use Yii;
 use common\models\project\City;
@@ -17,6 +17,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\response;
+use yii\helpers\Json;
+use common\models\project\Product;
 
 
 /**
@@ -251,5 +253,30 @@ class ProductSaleController extends Controller
                 return $listProduct;
             }
         }
+    }
+
+    public function actionList()
+    {
+        if (isset($_POST['depdrop_parents'])) {
+            $out = [];
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $type = $parents[0];
+                $out = Product::find()
+                    ->where(['type' => $type,'deleted'=>1])
+                    ->orderBy('id desc')
+                    ->asArray()->all();
+                $data = [];
+                foreach ($out as $item) {
+                    $data_model = [];
+                    $data_model['id'] = intval($item['id']);
+                    $data_model['name'] = $item['name'];
+                    $data[] = $data_model;
+                }
+                echo Json::encode(['output' => $data, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
     }
 }

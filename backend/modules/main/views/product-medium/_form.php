@@ -320,11 +320,11 @@ if($model->county){
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         Tên chủ sở hữu<br>
                         <input id="name" />
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         Giới tính<br>
                         <select id="gender">
                             <option>Chọn giới tính...</option>
@@ -332,29 +332,29 @@ if($model->county){
                             <option value="2">Nữ</option>
                         </select>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         Ngày sinh<br>
                         <input type="date" id="birthday"/>
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         Địa chỉ<br>
                         <input id="address" />
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         Điện thoại<br>
                         <input id="mobile" />
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         Thư điện tử<br>
                         <input id="email" />
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         Nghề nghiệp<br>
                         <input id="job" />
                     </div>
