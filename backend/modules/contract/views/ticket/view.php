@@ -1,5 +1,5 @@
 <?php
-
+//Nghich re nhanh cho vui
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
