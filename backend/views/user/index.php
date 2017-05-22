@@ -54,6 +54,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a($model->username, ['update', 'id' =>$model->id], ['class' =>'alink']);
                 },
             ],
+            [
+                'attribute' => 'employee_id',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->getEmployee($model->employee_id)? $model->getEmployee($model->employee_id) : '';
+                },
+            ],
             'email',
             [
                 'class' => EnumColumn::className(),

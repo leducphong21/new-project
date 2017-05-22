@@ -53,7 +53,11 @@ $bundle = ProjectAsset::register($this);
                                         <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.png')) ?>">
                                     </div>
                                     <section>
-                                        <h2><span class="profile"><span>Administrator</span></span></h2>
+                                        <h2><span class="profile"><span>
+                                                    <?php
+                                                        echo \Yii::$app->user->identity->username;
+                                                    ?>
+                                                </span></span></h2>
                                     </section>
                                 </a>
                                 <!--Login Area Dropdown-->
@@ -192,21 +196,14 @@ $bundle = ProjectAsset::register($this);
                             //'options'=>['class'=>'open'],
                             'items'=>[
                                 [
-                                    'label'=> 'Người mua',
+                                    'label'=> 'Người mua/thuê',
                                     'url'=>['/customer/buyer'],
                                 ],
                                 [
                                     'label'=> 'Người bán',
                                     'url'=>['/customer/seller'],
                                 ],
-                                [
-                                    'label'=> 'Người thuê',
-                                    'url'=>['/customer/renter'],
-                                ],
-                                [
-                                    'label'=> 'Người liên hệ',
-                                    'url'=>['/customer/contacter'],
-                                ],
+
                             ]
                         ],
                         [

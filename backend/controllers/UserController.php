@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\helpers\system\UserHelper;
+use common\models\project\Employee;
 use Yii;
 use common\models\User;
 use backend\models\UserForm;
@@ -11,6 +12,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -68,6 +70,7 @@ class UserController extends AdminController
     {
         $model = new UserForm();
         $model->setScenario('create');
+        $modelEmployee = Employee::find()->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
@@ -77,7 +80,8 @@ class UserController extends AdminController
 
         return $this->render('create', [
             'model' => $model,
-            'roles' => $dataRole
+            'roles' => $dataRole,
+            'modelEmployee' => ArrayHelper::map($modelEmployee,'id','code')
         ]);
     }
 
@@ -90,6 +94,7 @@ class UserController extends AdminController
     {
         $model = new UserForm();
         $model->setModel($this->findModel($id));
+        $modelEmployee = Employee::find()->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
@@ -99,7 +104,8 @@ class UserController extends AdminController
 
         return $this->render('update', [
             'model' => $model,
-            'roles' => $dataRole
+            'roles' => $dataRole,
+            'modelEmployee' => ArrayHelper::map($modelEmployee,'id','code')
         ]);
     }
 

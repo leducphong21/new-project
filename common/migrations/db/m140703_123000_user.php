@@ -25,7 +25,8 @@ class m140703_123000_user extends Migration
             'status' => $this->smallInteger()->notNull()->defaultValue(User::STATUS_ACTIVE),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
-            'logged_at' => $this->integer()
+            'logged_at' => $this->integer(),
+            'employee_id' => $this->integer(),
         ], $tableOptions);
 
         $this->createTable('{{%user_profile}}', [

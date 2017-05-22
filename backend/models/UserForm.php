@@ -1,6 +1,7 @@
 <?php
 namespace backend\models;
 
+use common\models\project\Employee;
 use common\models\User;
 use yii\base\Exception;
 use yii\base\Model;
@@ -17,8 +18,8 @@ class UserForm extends Model
     public $password;
     public $status;
     public $roles;
-
     private $model;
+    public $employee_id;
 
     /**
      * @inheritdoc
@@ -27,7 +28,7 @@ class UserForm extends Model
     {
         return [
             ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
+            [['username','employee_id'], 'required'],
             ['username', 'unique', 'targetClass' => User::className(), 'filter' => function ($query) {
                 if (!$this->getModel()->isNewRecord) {
                     $query->andWhere(['not', ['id'=>$this->getModel()->id]]);
@@ -43,11 +44,15 @@ class UserForm extends Model
                     $query->andWhere(['not', ['id'=>$this->getModel()->id]]);
                 }
             }],
-
+            ['employee_id', 'unique', 'targetClass'=> User::className(), 'filter' => function ($query) {
+                if (!$this->getModel()->isNewRecord) {
+                    $query->andWhere(['not', ['id'=>$this->getModel()->id]]);
+                }
+            },'message'=>'Nhân viên này đã có tài khoản'],
             ['password', 'required', 'on' => 'create'],
             ['password', 'string', 'min' => 6],
 
-            [['status'], 'integer'],
+            [['status','employee_id'], 'integer'],
             [['roles'], 'each',
                 'rule' => ['in', 'range' => ArrayHelper::getColumn(
                     Yii::$app->authManager->getRoles(),
@@ -115,6 +120,7 @@ class UserForm extends Model
             if ($this->password) {
                 $model->setPassword($this->password);
             }
+            $model->employee_id = $this->employee_id;
             if (!$model->save()) {
                 throw new Exception('Model not saved');
             }
@@ -134,4 +140,9 @@ class UserForm extends Model
         }
         return null;
     }
+
+    public function getEmployee(){
+        return $this->hasOne(Employee::className(), ['employee_id' => 'id']);
+    }
+
 }

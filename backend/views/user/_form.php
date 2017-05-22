@@ -37,6 +37,8 @@ use yii\bootstrap\ActiveForm;
             'template' => '{label} <div class="row"><div class="col-xs-3 col-sm-3">{input}{error}{hint}</div></div>'
         ])->dropDownList(User::statuses()) ?>
 
+        <?php echo $form->field($model, 'employee_id')->dropDownList($modelEmployee) ?>
+
         <?php echo $form->field($model, 'roles')->checkboxList($roles) ?>
 
         <hr>

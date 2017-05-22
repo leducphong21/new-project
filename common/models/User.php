@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use common\models\project\Employee;
 use common\commands\AddToTimelineCommand;
 use common\models\query\UserQuery;
 use Yii;
@@ -49,6 +50,7 @@ class User extends ActiveRecord implements IdentityInterface
     const EVENT_AFTER_LOGIN = 'afterLogin';
 
     public $fullname;
+
 
     /**
      * @inheritdoc
@@ -117,7 +119,8 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'email'], 'unique'],
             ['status', 'default', 'value' => self::STATUS_NOT_ACTIVE],
             ['status', 'in', 'range' => array_keys(self::statuses())],
-            [['username'], 'filter', 'filter' => '\yii\helpers\Html::encode']
+            [['username'], 'filter', 'filter' => '\yii\helpers\Html::encode'],
+            ['employee_id','required'],
         ];
     }
 
@@ -134,6 +137,7 @@ class User extends ActiveRecord implements IdentityInterface
             'created_at' => Yii::t('common', 'Created at'),
             'updated_at' => Yii::t('common', 'Updated at'),
             'logged_at' => Yii::t('common', 'Last login'),
+            'employee_id' => 'Nhân viên',
         ];
     }
 
@@ -346,5 +350,16 @@ class User extends ActiveRecord implements IdentityInterface
     public function getFullName()
     {
         return $this->username;
+    }
+
+    public function getEmployee($employee_id = NULL)
+    {
+        if ($employee_id != NULL){
+            $model = Employee::findOne($employee_id);
+            return $model->code;
+        } else{
+            return '';
+        }
+
     }
 }

@@ -20,10 +20,6 @@ if($model->portion){
     $modelLand = ProjectHelper::getLand($model->portion->id);
 }
 
-$modelCounty = [];
-if($model->county){
-    $modelCounty = CityHelper::getCounty($model->county->id);
-}
 ?>
 
 <div class="tabbable">
@@ -114,7 +110,6 @@ if($model->county){
                                             'id'=>'county_id',
                                             'class' => 'form-control input-sm'
                                         ],
-                                        'data'=> $modelCounty,
                                         'pluginOptions'=>[
                                             'depends'=>['city_id'],
                                             'placeholder'=> 'Chọn quận huyện ...',
