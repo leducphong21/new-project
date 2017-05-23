@@ -286,11 +286,11 @@ $bundle = ProjectAsset::register($this);
                                     'items'=>[
                                         [
                                             'label'=> 'Tổng hợp phiếu đặt cọc',
-                                            'url' => '/contract/ticket',
+                                            'url' => '/manager/ticket',
                                         ],
                                         [
                                             'label'=> 'Tổng hợp hợp đồng',
-                                            'url' => '/contract/contract',
+                                            'url' => '/manager/contract',
                                         ],
                                     ]
                                 ],

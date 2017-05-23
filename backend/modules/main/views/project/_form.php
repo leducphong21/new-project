@@ -9,9 +9,6 @@ use common\helpers\project\CityHelper;
 
 
 $modelCounty = [];
-if($model->county){
-    $modelCounty = CityHelper::getCounty($model->county->id);
-}
 ?>
 <div class="tabbable">
     <div class="widget-body">

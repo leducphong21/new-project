@@ -17,7 +17,15 @@ use yii\helpers\ArrayHelper;
  */
 class CityHelper extends Inflector
 {
-
+    public static function getCounty($city_id)
+    {
+        $dataModel = County::find()
+            ->where(['city_id' => $city_id])
+            ->orderBy('id DESC')
+            ->asArray()->all();
+        $data = ArrayHelper::map($dataModel, 'id', 'name');
+        return $data;
+    }
 
 
 }

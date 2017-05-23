@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\project;
+namespace common\models\project\manager;
 
 use Yii;
 use yii\base\Model;
@@ -41,7 +41,7 @@ class TicketSearch extends Ticket
      */
     public function search($params)
     {
-        $query = Ticket::find()->where(['created_by'=>Yii::$app->user->id])->active();
+        $query = Ticket::find()->active();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

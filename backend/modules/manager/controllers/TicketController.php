@@ -1,13 +1,13 @@
 <?php
 
-namespace backend\modules\contract\controllers;
+namespace backend\modules\manager\controllers;
 
 use common\models\project\Buyer;
 use common\models\project\Product;
 use Yii;
-use common\models\project\Ticket;
+use common\models\project\manager\Ticket;
 use common\models\project\Seller;
-use common\models\project\TicketSearch;
+use common\models\project\manager\TicketSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

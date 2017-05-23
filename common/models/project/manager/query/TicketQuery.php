@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\project\query;
+namespace common\models\project\manager\query;
 
 /**
  * This is the ActiveQuery class for [[\common\models\project\Ticket]].

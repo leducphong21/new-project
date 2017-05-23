@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\project;
+namespace common\models\project\manager;
 
 use common\models\User;
 use Yii;
@@ -85,11 +85,11 @@ class Ticket extends \yii\db\ActiveRecord
             'total_price' => 'Tổng giá',
             'ticket_price' => 'Đặt cọc',
             'status' => 'Tình trạng',
-            'name_buyer' => 'Người mua',
+            'name_buyer' => 'Tên người mua',
             'code_buyer' => 'Mã người mua',
             'address_buyer' => 'Địa chỉ NM',
             'mobile_buyer' => 'Điện thoại NM',
-            'name_seller' => 'Người bán',
+            'name_seller' => 'Tên người bán',
             'code_seller' => 'Mã người bán',
             'address_seller' => 'Địa chỉ NB',
             'mobile_seller' => 'Điện thoại NB',
@@ -106,7 +106,7 @@ class Ticket extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return new \common\models\project\query\TicketQuery(get_called_class());
+        return new \common\models\project\manager\query\TicketQuery(get_called_class());
     }
     public function getAuthor()
     {

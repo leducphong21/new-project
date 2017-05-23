@@ -18,10 +18,7 @@ if($model->portion){
     $modelLand = ProjectHelper::getLand($model->portion->id);
 }
 
-$modelCounty = [];
-if($model->county){
-    $modelCounty = CityHelper::getCounty($model->county->id);
-}
+
 
 $modelProject = [];
 if($model->project){

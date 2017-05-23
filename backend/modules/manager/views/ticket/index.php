@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'summary' => '',
                             'options' => [
                                 'id' => 'w1',
-                                'style'=>'width: 1500px'
+                                'style'=>'width: 1900px'
                             ],
                             'columns' => [
                                 ['class' => 'yii\grid\SerialColumn'],
@@ -109,6 +109,31 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'attribute' => 'code_buyer',
                                     'contentOptions' => ['style' => 'width:100px;'],
                                 ],
+                                [
+                                    'attribute' => 'created_by',
+                                    'value' => function ($model) {
+                                        return $model->author? $model->author->username : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'created_at',
+                                    'value' => function ($model) {
+                                        return \Yii::$app->formatter->asDate($model->created_at, 'dd/MM/yyyy');
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'updated_by',
+                                    'value' => function ($model) {
+                                        return $model->updater ? $model->updater->username : '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'updated_at',
+                                    'value' => function ($model) {
+                                        return \Yii::$app->formatter->asDate($model->updated_at, 'dd/MM/yyyy');
+                                    },
+                                ],
+
                                 [
                                     'class' => 'backend\grid\ActionColumn',
                                     'template'=>'{update} {delete}',
