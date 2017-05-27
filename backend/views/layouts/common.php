@@ -20,7 +20,7 @@ $bundle = ProjectAsset::register($this);
                 <div class="navbar-header pull-left">
                     <a href="<?=Url::to(['/'])?>" class="navbar-brand">
                         <small>
-                            <img src="<?=$this->assetManager->getAssetUrl($bundle, 'img/logo.png')?>" />
+                            <img src="<?=$this->assetManager->getAssetUrl($bundle, 'img/bds2.jpg')?>" />
                         </small>
                     </a>
                 </div>

@@ -190,4 +190,45 @@ class TicketController extends Controller
             throw new NotFoundHttpException('The Ticket item does not exist.');
         }
     }
+
+    public function actionAjaxInfo()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $dataGet = $_GET;
+        $dataId = isset($dataGet['id']) ? $dataGet['id'] : [];
+        if (isset($dataId)){
+            $ticket = [];
+            if ($dataId && is_numeric($dataId)) {
+                $ticket = Ticket::findOne($dataId);
+                $name_product = Product::findOne($ticket->name_product)->name;
+                $code_product = Product::findOne($ticket->name_product)->code;
+                $total_price = Product::findOne($ticket->name_product)->total_price;
+                $name_seller = Seller::findOne($ticket->name_seller)->name;
+                $code_seller = Seller::findOne($ticket->name_seller)->code;
+                $address_seller = $ticket->address_seller;
+                $mobile_seller = $ticket->mobile_seller;
+                $name_buyer = Buyer::findOne($ticket->name_buyer)->name;
+                $code_buyer = Buyer::findOne($ticket->name_buyer)->code;
+                $address_buyer = $ticket->address_buyer;
+                $mobile_buyer = $ticket->mobile_buyer;
+                $res = [
+                    'hasTicket' => true,
+                    'name_product' => $name_product,
+                    'code_product' => $code_product,
+                    'total_price' => $total_price,
+                    'name_seller' => $name_seller,
+                    'code_seller' => $code_seller,
+                    'address_seller' => $address_seller,
+                    'mobile_seller' => $mobile_seller,
+                    'name_buyer' => $name_buyer,
+                    'code_buyer' => $code_buyer,
+                    'address_buyer' => $address_buyer,
+                    'mobile_buyer' => $mobile_buyer,
+                ];
+                return $res;
+            } else
+                return ['hasTicket' => false];
+        }
+
+    }
 }
