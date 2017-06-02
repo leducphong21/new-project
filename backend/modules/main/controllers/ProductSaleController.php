@@ -6,6 +6,7 @@ use common\models\project\UploadForm;
 use yii\web\UploadedFile;
 use backend\assets_b\Project;
 use Yii;
+use common\models\project\Seller;
 use common\models\project\City;
 use common\models\project\ProductCategory;
 use common\models\project\ModelProject;
@@ -230,6 +231,10 @@ class ProductSaleController extends Controller
                 $city_id = $product->city_id;
                 $city = City::find()->where(['id' => $city_id])->one()->name;
                 $images = UploadForm::find()->where(['product_id' => $product->id])->all();
+                $name_seller = isset($product->name_seller) ? Seller::findOne($product->name_seller)->name : 'Công ty BDS';
+                $code_seller = isset($product->name_seller) ? Seller::findOne($product->name_seller)->code : 'CT';
+                $address_seller = isset($product->name_seller) ? $product->address_seller : '64-Giáp Nhị-Hoàng Mai-Hà Nội';
+                $mobile_seller = isset($product->name_seller) ? $product->mobile_seller : '043654597';
                 $res = [
                     'name' => $product->name,
                     'code' => $product->code,
@@ -245,7 +250,11 @@ class ProductSaleController extends Controller
                     'bedrooms' => $product->bedrooms,
                     'bathrooms' => $product->bathrooms,
                     'description' => $product->description,
-                    'images' => $images
+                    'images' => $images,
+                    'name_seller' => $name_seller,
+                    'code_seller' => $code_seller,
+                    'address_seller' => $address_seller,
+                    'mobile_seller' => $mobile_seller
                 ];
                 return $res;
         } else {

@@ -58,6 +58,10 @@ class Portion extends \yii\db\ActiveRecord
             [['created_at', 'updated_at','acreage','location'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 8],
+            ['name','required','message' => 'Tên lô đất không được để trống'],
+            ['project_id','required','message' => 'Dự án không được để trống'],
+            ['acreage','required','message' => 'Diện tích không được để trống'],
+            ['location','required','message' => 'Vị trí không được để trống'],
         ];
     }
 

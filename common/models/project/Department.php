@@ -51,6 +51,7 @@ class Department extends \yii\db\ActiveRecord
             [[ 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
+            ['name','required','message' => 'Tên bộ phận không được để trống'],
         ];
     }
 

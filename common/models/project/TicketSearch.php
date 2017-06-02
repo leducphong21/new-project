@@ -46,7 +46,12 @@ class TicketSearch extends Ticket
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => env('PAGE_SIZE'),
+                'pageSize' => 5,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
             ],
         ]);
 

@@ -53,6 +53,8 @@ class Branch extends \yii\db\ActiveRecord
             [['created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'address'], 'string', 'max' => 255],
+            ['name','required','message' => 'Tên chi nhanh không được để trống'],
+            ['address','required','message' => 'Địa chỉ không được để trống'],
         ];
     }
 

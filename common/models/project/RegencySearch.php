@@ -48,6 +48,11 @@ class RegencySearch extends Regency
             'pagination' => [
                 'pageSize' => 5,
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
+            ],
         ]);
 
         if (!($this->load($params) && $this->validate())) {

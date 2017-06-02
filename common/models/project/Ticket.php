@@ -63,11 +63,23 @@ class Ticket extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name_seller','name_product', 'name_buyer','total_price', 'ticket_price', 'status', 'created_by', 'updated_by','type'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['name_product', 'name_buyer','total_price', 'ticket_price', 'status', 'created_by', 'updated_by','type'], 'integer'],
+            [['name_seller','created_at', 'updated_at'], 'safe'],
             [['code', 'code_product', 'code_buyer', 'code_seller'], 'string', 'max' => 8],
             [[ 'address_buyer',  'address_seller'], 'string', 'max' => 255],
             [['mobile_buyer', 'mobile_seller'], 'string', 'max' => 16],
+            ['code','required','message'=> 'Số phiếu không được để trống'],
+            ['name_product','required','message'=> 'Tên sản phẩm không được để trống'],
+            ['code_product','required','message'=> 'Mã sản phẩm không được để trống'],
+            ['total_price','required','message'=> 'Tổng giá sản phẩm không được để trống'],
+            ['name_seller','required','message'=> 'Tên chủ sở hữu không được để trống'],
+            ['code_seller','required','message'=> 'Mã chủ sở hữu không được để trống'],
+            ['address_seller','required','message'=> 'Địa chỉ chủ sở hữu không được để trống'],
+            ['mobile_seller','required','message'=> 'Điện thoại chủ sở hữu không được để trống'],
+            ['name_buyer','required','message'=> 'Tên người mua không được để trống'],
+            ['code_buyer','required','message'=> 'Mã người mua không được để trống'],
+            ['address_buyer','required','message'=> 'Địa chỉ người mua không được để trống'],
+            ['mobile_buyer','required','message'=> 'Điện thoại người mua không được để trống'],
         ];
     }
 

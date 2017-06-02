@@ -18,8 +18,8 @@ class CountySearch extends County
     public function rules()
     {
         return [
-            [['id', 'city_id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'code', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'created_by', 'updated_by'], 'integer'],
+            [['name','city_id', 'code', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -48,23 +48,30 @@ class CountySearch extends County
             'pagination' => [
                 'pageSize' => 5,
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
+            ],
         ]);
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
+        $query->joinWith('city');
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'city_id' => $this->city_id,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at,
             'updated_by' => $this->updated_by,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'code', $this->code]);
+        $query->andFilterWhere(['like', 'm_county.name', $this->name])
+            ->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'm_city.name', $this->city_id]);
 
         return $dataProvider;
     }

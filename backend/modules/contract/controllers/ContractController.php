@@ -73,8 +73,11 @@ class ContractController extends Controller
 
             $ticket = Ticket::findOne($model->ticket_id);
             if($model->save()){
-                $ticket->status = 2;
-                $ticket->save();
+                if(isset($ticket->status)){
+                    $ticket->status = 2;
+                    $ticket->save();
+                }
+
                 Yii::$app->getSession()->setFlash('alert', [
                     'body'=>'Thêm mới thành công.',
                     'options'=>['class'=>'ialert alert-success']

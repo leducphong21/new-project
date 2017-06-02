@@ -64,7 +64,8 @@
     "kartik-v/yii2-label-inplace": "*",
     "kartik-v/yii2-mpdf": "*",
     "kartik-v/yii2-field-range": "*",
-    "dungphanxun/yii2-asset-collection" :  "dev-master"
+    "dungphanxun/yii2-asset-collection" :  "dev-master",
+	"yiisoft/yii2-apidoc": "~2.1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",

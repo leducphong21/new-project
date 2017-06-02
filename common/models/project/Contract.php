@@ -65,11 +65,26 @@ class Contract extends \yii\db\ActiveRecord
     {
         return [
             [['total_price', 'created_by', 'updated_by','deleted','ticket_id'], 'integer'],
-            [['handover_dateline', 'renter_dateline', 'created_at', 'updated_at'], 'safe'],
+            [['handover_dateline', 'renter_dateline', 'created_at', 'updated_at','ticket_id'], 'safe'],
             [['code', 'code_product', 'code_buyer', 'code_seller'], 'string', 'max' => 8],
             [['name_product', 'name_buyer', 'address_buyer', 'name_seller', 'address_seller'], 'string', 'max' => 255],
             [['mobile_buyer', 'mobile_seller'], 'string', 'max' => 16],
             [['guarantee'], 'string', 'max' => 32],
+            ['code','required','message'=> 'Số hợp đồng không được để trống'],
+            ['name_product','required','message'=> 'Tên sản phẩm không được để trống'],
+            ['code_product','required','message'=> 'Mã sản phẩm không được để trống'],
+            ['total_price','required','message'=> 'Tổng giá sản phẩm không được để trống'],
+            ['name_seller','required','message'=> 'Tên chủ sở hữu không được để trống'],
+            ['code_seller','required','message'=> 'Mã chủ sở hữu không được để trống'],
+            ['address_seller','required','message'=> 'Địa chỉ chủ sở hữu không được để trống'],
+            ['mobile_seller','required','message'=> 'Điện thoại chủ sở hữu không được để trống'],
+            ['name_buyer','required','message'=> 'Tên người mua không được để trống'],
+            ['code_buyer','required','message'=> 'Mã người mua không được để trống'],
+            ['address_buyer','required','message'=> 'Địa chỉ người mua không được để trống'],
+            ['mobile_buyer','required','message'=> 'Điện thoại người mua không được để trống'],
+            ['handover_dateline','required','message'=> 'Ngày bàn giao không được để trống'],
+            ['guarantee','required','message'=> 'Bảo hành không được để trống'],
+
         ];
     }
 

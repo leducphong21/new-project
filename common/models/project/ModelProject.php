@@ -63,6 +63,11 @@ class ModelProject extends \yii\db\ActiveRecord
             [['address','created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 8],
+            ['name','required','message' => 'Tên dự án không được để trống'],
+            ['project_category_id','required','message' => 'Loại dự án không được để trống'],
+            ['address','required','message' => 'Không được để trống không được để trống'],
+            ['city_id','required','message' => 'Tỉnh thành không được để trống'],
+            ['county_id','required','message' => 'Quận huyện không được để trống'],
         ];
     }
 

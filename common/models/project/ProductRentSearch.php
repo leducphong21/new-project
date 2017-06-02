@@ -48,6 +48,11 @@ class ProductRentSearch extends ProductRent
             'pagination' => [
                 'pageSize' => 5,
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
+            ],
         ]);
 
         if (!($this->load($params) && $this->validate())) {

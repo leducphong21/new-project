@@ -105,61 +105,10 @@ if($model->product){
                 <br>
                 <div class="row">
                     <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Chủ sở hữu</label>
+                        <div class="form-group ">Tên chủ sở hữu
                             <span class="input-icon icon-right">
-                                        <?php
-                                        $urlCarJson = Url::to(['/customer/seller/json-list']);
-                                        // Get the initial city description
-                                        $carDesc = empty($modelSeller->name) ? '' : Seller::findOne($modelSeller->name);
-                                        if($modelSeller->name){
-                                            $carDesc = $modelSeller->name;
-                                        }
-
-                                        echo Select2::widget([
-                                            'model' => $model,
-                                            'attribute' => 'name_seller',
-                                            //'name' => 'car_id',
-                                            //'data' => $carsNo,
-                                            //'value' => $model->car_id,
-                                            'initValueText' => $carDesc,
-                                            'theme' => Select2::THEME_BOOTSTRAP,
-                                            'options' => [
-                                                'placeholder' => 'Chọn chủ sở hữu ...',
-                                                'class' => 'form-control input-sm',
-                                                'id' => 'select_seller'
-                                            ],
-                                            'size' => Select2::SMALL,
-                                            'addon' => [
-                                                'append' => [
-                                                    'content' => '<i id="btnAddNewCar"  class="fa fa-plus blue imouse"  data-toggle="modal" data-target="#Seller" title="Thêm mới chủ sở hữu"></i>',
-                                                    'asButton' => false
-                                                ]
-                                            ],
-                                            'pluginOptions' => [
-                                                'allowClear' => true,
-                                                'tags' => true,
-                                                'tokenSeparators' => [','],
-                                                'maximumInputLength' => 15,
-                                                //'minimumInputLength' => 2,
-                                                'language' => [
-                                                    'errorLoading' => new JsExpression("function () { return 'Đang tìm kiếm...'; }"),
-                                                ],
-                                                'ajax' => [
-                                                    'url' => $urlCarJson,
-                                                    'dataType' => 'json',
-                                                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
-                                                ],
-                                                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
-                                                'templateSelection' => new JsExpression('function (city) { return city.text; }'),
-                                            ],
-                                            'pluginEvents' => [
-                                                "change" => "function() { console.log('change'); }",
-                                                "select2:unselect" => "function() { console.log('unselect'); }"
-                                            ]
-                                        ]);
-                                        ?>
-                                     </span>
+                             <?=Html::activeTextInput($model, 'name_seller', ['id'=>'data_name_seller','class' => 'form-control', 'style' =>'width: 100%;'])?>
+                         </span>
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -209,7 +158,7 @@ if($model->product){
                                             'initValueText' => $carDesc,
                                             'theme' => Select2::THEME_BOOTSTRAP,
                                             'options' => [
-                                                'placeholder' => 'Chọn chủ sở hữu ...',
+                                                'placeholder' => 'Chọn người mua ...',
                                                 'class' => 'form-control input-sm',
                                                 'id' => 'select_buyer'
                                             ],
@@ -429,64 +378,18 @@ $app_js = <<<JS
         success: function(result){
             $('#code_product').val(result.code);
             $('#total_price_product').val(result.total_price);
-            
             $('#ticket_price_product').val(result.total_price/10);
+            $('#data_name_seller').val(result.name_seller);
+            $('#data_code_seller').val(result.code_seller);
+            $('#data_address_seller').val(result.address_seller);
+            $('#data_mobile_seller').val(result.mobile_seller);
         }
     });
     
 
 })
 
-//Selller
-$('#save_seller').click(function(){
-                   $.ajax({
-                      url: '/customer/seller/ajax-save',
-                      data: {
-                         name:$('#name_seller').val(),
-                         gender:$('#gender_seller').val(),
-                         birthday:$('#birtday_seller').val(),
-                         address:$('#address_seller').val(),
-                         mobile:$('#mobile_seller').val(),
-                         email:$('#email_seller').val(),
-                         job:$('#job_seller').val(),
-                         tax_code:$('#tax_code_seller').val()
-                      },
-                      error: function() {
-                         alert('Có lỗi xảy ra');
-                      },
-                      success: function() {
-                         alert('Thanh cong');
-                         $('#name_seller').val('');
-                         $('#gender_seller').val('');
-                         $('#birtday_seller').val('');
-                         $('#address_seller').val('');
-                         $('#mobile_seller').val('');
-                         $('#email_seller').val('');
-                         $('#job_seller').val('');
-                         $('#tax_code_seller').val('')
-                      },
-                      type: 'POST'
-                   });
-});
 
-$('#select_seller').on('change',function() {
-    var idSeller = $('#select_seller').val();
-    console.log(idSeller);
-    $.ajax({
-        url: '/customer/seller/ajax-info',
-        type: 'GET',
-        data:{
-            id:idSeller
-        },
-        success: function(result){
-            $('#data_address_seller').val(result.address);
-            $('#data_mobile_seller').val(result.phone_number);
-            $('#data_code_seller').val(result.code);
-        }
-    });
-    
-
-})
 
 
 $('#save_buyer').click(function(){

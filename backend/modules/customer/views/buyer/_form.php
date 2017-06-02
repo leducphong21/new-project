@@ -93,6 +93,14 @@ use yii\jui\DatePicker;
                         </div>
                     </div>
 
+                    <div class="col-sm-4">
+                        <div class="form-group ">Mã số thuế
+                            <span class="input-icon icon-right">
+                             <?=Html::activeTextInput($model, 'tax_code', ['class' => 'form-control'])?>
+                         </span>
+                        </div>
+                    </div>
+
                 </div>
                 <br>
                 <div class=" pull-right">

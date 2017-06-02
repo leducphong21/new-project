@@ -56,6 +56,7 @@ class County extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 8],
+            ['name','required','message' => 'Tên quận/huyện không được để trống'],
         ];
     }
 

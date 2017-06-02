@@ -84,15 +84,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'contentOptions' => ['style' => 'width:100px;'],
                                 ],
                                 [
-                                    'attribute' => 'status',
-                                    'contentOptions' => ['style' => 'width:100px;'],
-                                ],
-                                [
                                     'attribute' => 'name_seller',
                                     'contentOptions' => ['style' => 'width:200px;'],
-                                    'value' => function($model){
-                                        return isset($model->seller) ? $model->seller->name : '';
-                                    }
                                 ],
                                 [
                                     'attribute' => 'code_seller',

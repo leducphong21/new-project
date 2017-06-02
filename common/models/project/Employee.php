@@ -61,6 +61,12 @@ class Employee extends \yii\db\ActiveRecord
             [['name', 'address'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 8],
             [['phone_number'], 'string', 'max' => 16],
+            ['name','required','message' => 'Tên không được để trống'],
+            ['address','required','message' => 'Địa chỉ không được để trống'],
+            ['phone_number','required','message' => 'Số điện thoại không được để trống'],
+            ['regency_id','required','message' => 'Chức vụ không được để trống'],
+            ['department_id','required','message' => 'Bộ phận không được để trống'],
+            ['branch_id','required','message' => 'Chi nhánh không được để trống'],
         ];
     }
 

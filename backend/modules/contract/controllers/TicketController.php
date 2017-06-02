@@ -70,7 +70,7 @@ class TicketController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if($model->save()){
                 $modelProduct = Product::findOne($model->name_product);
-                $modelProduct->deleted = 0;
+                $modelProduct->deleted = 2;
                 $modelProduct->save();
             Yii::$app->getSession()->setFlash('alert', [
                 'body'=>'Thêm mới thành công.',
@@ -203,8 +203,8 @@ class TicketController extends Controller
                 $name_product = Product::findOne($ticket->name_product)->name;
                 $code_product = Product::findOne($ticket->name_product)->code;
                 $total_price = Product::findOne($ticket->name_product)->total_price;
-                $name_seller = Seller::findOne($ticket->name_seller)->name;
-                $code_seller = Seller::findOne($ticket->name_seller)->code;
+                $name_seller = $ticket->name_seller;
+                $code_seller = $ticket->code_seller;
                 $address_seller = $ticket->address_seller;
                 $mobile_seller = $ticket->mobile_seller;
                 $name_buyer = Buyer::findOne($ticket->name_buyer)->name;

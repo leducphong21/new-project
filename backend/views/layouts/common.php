@@ -129,15 +129,7 @@ $bundle = ProjectAsset::register($this);
                             //'options'=>['class'=>'open'],
                             'items'=>[
                                 [
-                                    'label'=> 'Phiếu đặt cọc',
-                                    'url'=>['/contract/ticket/create'],
-                                ],
-                                [
-                                    'label'=> 'Lập hợp đồng',
-                                    'url'=>['/contract/contract/create'],
-                                ],
-                                [
-                                    'label'=> 'Tổng hợp phiếu đặt cọc',
+                                    'label'=> 'Phiếu chưa thnah toán',
                                     'url'=>['/contract/ticket'],
                                 ],
                                 [
@@ -300,16 +292,20 @@ $bundle = ProjectAsset::register($this);
                                     'is_toggle' => 1,
                                     'items'=>[
                                         [
-                                            'label'=> 'Thống kê 1',
-                                            'url' => '#',
+                                            'label'=> 'Sản phẩm đã bán',
+                                            'url' => '/main/product-sale-sub',
                                         ],
                                         [
-                                            'label'=> 'Thống kê 2',
-                                            'url' => '#',
+                                            'label'=> 'Sản phẩm đã cho thuê',
+                                            'url' => '/main/product-rent-sub',
                                         ],
                                         [
-                                            'label'=> 'Thống kê ...',
-                                            'url' => '#',
+                                            'label'=> 'Sản phẩm đã môi giới',
+                                            'url' => '/main/product-medium-sub',
+                                        ],
+                                        [
+                                            'label'=> 'Phiếu đã thanh toán',
+                                            'url'=>['/contract/ticket-sub'],
                                         ],
                                     ]
                                 ],

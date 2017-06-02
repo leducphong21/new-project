@@ -64,6 +64,12 @@ class Buyer extends \yii\db\ActiveRecord
             [['code'], 'string', 'max' => 8],
             [['phone_number', 'tax_code'], 'string', 'max' => 16],
             [['email', 'job'], 'string', 'max' => 64],
+            ['name','required','message' => 'Tên người mua/thuê không được để trống'],
+            ['gender','required','message' => 'Giới tính không được để trống'],
+            ['birth_day','required','message' => 'Ngày sinh không được để trống'],
+            ['phone_number','required','message' => 'Số điện thoại không được để trống'],
+            ['address','required','message' => 'Địa chỉ không được để trống'],
+            ['tax_code','required','message' => 'Mã số thuê không được để trống'],
         ];
     }
 

@@ -41,12 +41,17 @@ class ContractSearch extends Contract
      */
     public function search($params)
     {
-        $query = Ticket::find()->where(['created_by'=>Yii::$app->user->id])->active();
+        $query = Contract::find()->where(['created_by'=>Yii::$app->user->id])->active();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
                 'pageSize' => 5,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
             ],
         ]);
 
